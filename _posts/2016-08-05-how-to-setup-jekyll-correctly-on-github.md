@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How to Setop Jekyll Correctly on Github Pages"
+title:  "How to Setup Jekyll Correctly on Github Pages"
 date:   2016-08-05
 categories: Jekyll Github
 ---
