@@ -15,6 +15,6 @@ You can contact me over [Telegram][tg], [Email][email] and WeChat (lmy441900).
 [uic]:      http://uic.edu.hk
 [keybase]:  https://keybase.io/lmy441900
 [mit-pgp]:  http://pgp.mit.edu/pks/lookup?search=0x10294E7C4008E282
-[this-pgp]: pubkey.asc
+[this-pgp]: /pubkey.asc
 [tg]:       https://telegram.me/lmy441900
 [email]:    mailto:lmy441900@gmail.com
