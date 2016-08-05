@@ -9,6 +9,8 @@ I've spent about 6 hours to set up this simple blog.
 
 ![OMG...](/assets/dying.png)
 
+(Picture from Telegram sticker "ARU".)
+
 So what's the problem? If you're also interested in creating your blog on Github Pages, you may take my suggestion into consideration:
 
 # Don't simply follow guidelines on jekyllrb.org
