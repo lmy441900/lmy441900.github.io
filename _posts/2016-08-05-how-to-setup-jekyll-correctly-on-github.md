@@ -7,7 +7,7 @@ categories: Jekyll Github
 
 I've spent about 6 hours to set up this simple blog.
 
-![OMG...](/assets/dying.webp)
+![OMG...](/assets/dying.png)
 
 So what's the problem? If you're also interested in creating your blog on Github Pages, you may take my suggestion into consideration:
 
