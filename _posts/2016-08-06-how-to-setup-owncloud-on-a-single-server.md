@@ -223,3 +223,76 @@ GRANT ALL PRIVILEGES ON [dbname].* TO '[user]'@'localhost' IDENTIFIED BY '[passw
 - `[dbname]` 是数据库名称；
 
 至此服务器配置完成。
+
+## 配置 ownCloud
+
+进入 ownCloud 页面即可完成基本配置，若没有警告则可顺利使用 ownCloud。以下介绍各项功能优化选项。
+
+### 缓存（Memcache）
+
+Memcache 可以将多次请求的内容放在内存里减少 I/O 请求以达到加速后来请求的目的，对性能提升不少，建议开启。因为我们要建立的是一台简单的 ownCloud 服务器，所以我们选用 PHP 的 `APCu` Memcache 模块，配置较 ownCloud 支持的 [`memcached`][memcached] 和 [`redis`][redis] 简单。在 Ubuntu 下，安装 `php5-apcu/trusty-backports` 包。**Ubuntu 主仓库提供的 `APCu` 版本较老（4.0.2），而 ownCloud 需要 `APCu` 版本大于等于 4.0.6，所以要从 `trusty-backports` 仓库安装。**
+
+如果源中没有 `APCu` 包，则需要从 `pecl` 中下载。先安装好 `pecl` 包，然后执行
+
+```bash
+pecl install APCu
+```
+
+**注意：下载的 `APCu` 模块是需要编译的，因此使用这种方法请确保系统已经安装好以下软件包：**
+
+- `autoconf`
+- `gcc`
+
+[memcached]: https://memcached.org/
+
+安装完成 `APCu` 后，编辑 ownCloud 目录中的 `config/config.php` 文件，在其中加入一行：
+
+```php
+'memcache.local' => '\OC\Memcache\APCu'
+```
+
+之后 ownCloud 就可以使用 Memcache 加速请求了。
+
+### 改变后台任务执行方式
+
+ownCloud 有一些后台程序用以执行更新缓存、清除垃圾等自维护行为。默认情况下 ownCloud 使用 [Ajax][ajax] 方式执行后台程序：一个请求一次。这样请求数量一多，后台任务的数量就多（而且还是一模一样的），造成不必要的开销。ownCloud [在其官方指引中](https://doc.owncloud.org/server/9.1/admin_manual/configuration_server/background_jobs_configuration.html)推荐使用 Cronjob 来每 15 分钟执行一次后台任务，在此我们配置 Cronjob。
+
+执行：
+
+```bash
+crontab -u [HTTP User] -e
+```
+
+这将打开一个编辑器（应该是 `nano`）。在其中输入：
+
+```
+*/15 * * * * php -f /path/to/owncloud/cron.php
+```
+
+`/path/to/owncloud` 替换为 ownCloud 所在目录。保存退出后可执行：
+
+```bash
+crontab -u [HTTP User] -l
+```
+
+来检查是否启用任务。之后我们需要在 ownCloud 中选择 Cron 任务执行类型，打开“管理”界面找到“后台任务”选项设置为 Cron 即可。
+
+### 服务器端加密（不推荐开启）
+
+ownCloud 有一个选项用于开启服务器端加密，可以对上传的文件进行加密处理。**我个人不推荐这么做，原因如下：**
+
+- 加密之后文件比原来大 30% 左右（参见[官方资料]()）；
+- 使用 ownCloud 模块会给系统带来更多开销；
+- 真的 Care 安全性的话~~不如跳舞~~，使用全盘加密效果会更好。
+
+### 二步验证（2FA）
+
+### 电子邮件
+
+# 附录
+
+## 启用 HTTP 安全连接（HTTPS）
+
+## 配置 ownCloud 使用电子邮件
+
+## 使用 `occ` 从后台管理 ownCloud
