@@ -16,6 +16,7 @@ ownCloud 是一个知名的私有云解决方案，其功能不仅有基础云�
 本文将完整介绍如何从零开始搭建一个**安全的** ownCloud 服务器，因此涉及大型网站所使用的技术时（譬如 [Redis][redis]、分布式计算方面技术等）本文将一概不讨论（其中一个原因是我并没有去了解过）。
 
 测试通过的操作系统：
+
 - [AOSC OS 3.6.2][aosc-os]
 - ~~[CentOS 7][cent-os-7]~~
 
@@ -208,6 +209,7 @@ GRANT ALL PRIVILEGES ON [dbname].* TO '[user]'@'localhost' IDENTIFIED BY '[passw
 ```
 
 其中除 `localhost` 是主机名，一般不需要改动外，根据实际情况填入以下字段：
+
 - `[user]` 是 ownCloud 将使用的数据库用户名；
 - `[password]` 是用户密码；
 - `[dbname]` 是数据库名称；
