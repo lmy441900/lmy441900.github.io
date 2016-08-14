@@ -41,6 +41,9 @@ ownCloud 是一个知名的私有云解决方案，其功能不仅有基础云�
 
 *方案 2* 可以自动化*方案 1* 的过程并自动设置好权限等问题。图省事，或者是在一些没有提供 Shell 接入的 VPS 商（比如虚拟空间），可选这个方案。下面主要阐述方案 1，因为博主一开始并没有注意到方案 2，直接啃了块大骨头 :(
 
+[cent-os-7]: https://centos.org
+[rhel-7]:    https://www.redhat.com/rhel/
+
 ## 解压并设置好权限
 
 **注意：你必须知道自己系统以哪个用户启动 Apache（httpd）。查阅相关资料获得这个信息，或者看看 `httpd.conf` 里面的 `User` 和 `Group` 配置。**
@@ -166,9 +169,14 @@ ownCloud 对 PHP 的最低要求是版本 5.4，但是在本文中用到的 `APC
 - `post_max_size = [size]`
 - `upload_max_filesize = [size]`
 
+[phpsec]: http://phpsec.org/projects/phpsecinfo/tests/
+
 ### MySQL (MariaDB)
 
 [MariaDB][mariadb] 是一款 [MySQL][mysql] 的开源替代品，使用方法和 [MySQL][mysql] 是一样的。
+
+[mariadb]: https://mariadb.org/
+[mysql]:   https://www.mysql.com/
 
 #### 配置实例
 
