@@ -35,7 +35,7 @@ ownCloud 是一个知名的私有云解决方案，其功能不仅有基础云�
 [aosc-os]:  https://aosc.io
 [cent-os-7]: https://centos.org
 
-# 部署
+## 部署
 
 首先我们需要获得 ownCloud。如果使用的是 [CentOS][cent-os-7]（[RHEL][rhel-7] 的社区版本）一类的大发行版，ownCloud 社区是提供有软件包的，直接根据[这个页面](https://download.owncloud.org/download/repositories/stable/owncloud/)的指引安装就可以了。如果是 [AOSC OS][aosc-os] 这样的没有 ownCloud 包的发行版或者想自己动手，你有两个选择：
 
@@ -46,7 +46,7 @@ ownCloud 是一个知名的私有云解决方案，其功能不仅有基础云�
 
 [rhel-7]:    https://www.redhat.com/rhel/
 
-## 解压并设置好权限
+### 解压并设置好权限
 
 **注意：你必须知道自己系统以哪个用户启动 Apache（httpd）。查阅相关资料获得这个信息，或者看看 `httpd.conf` 里面的 `User` 和 `Group` 配置。**
 
@@ -73,11 +73,11 @@ tar xf /path/to/owncloud-9.1.0.tar.bz2
 
 对于更加安全的措施（比如基于 SELinux 的强制访问保护），参见文末附录。
 
-## 配置服务器
+### 配置服务器
 
-### Apache httpd
+#### Apache httpd
 
-#### 模块
+##### 模块
 
 于 `httpd.conf` 中检查。PHP 模块名为 `libphp5.so` 或（PHP 7）`libphp7.so`，一般位于 PHP 软件包中。
 
@@ -86,7 +86,7 @@ tar xf /path/to/owncloud-9.1.0.tar.bz2
 - env
 - headers
 
-#### 配置
+##### 配置
 
 - `ServerName`：服务器名称。设定到服务器的域名，如果没有域名，写 IP。
 - `DocumentRoot [dir]`：网页服务器目录。指定网站根目录。**对应的 `<Directory>` 标签也要更改到 `DocumentRoot` 中，否则会应用全局的 Deny 规则，导致网页服务器无法正常运行。**
@@ -110,11 +110,11 @@ tar xf /path/to/owncloud-9.1.0.tar.bz2
 
 配置完成后，使用 `sudo systemctl start httpd`（CentOS 7 使用 `sudo systemctl start apache`）来启动 Apache httpd 服务器。将 `start` 替换为 `enable` 可使其自启动。
 
-### PHP
+#### PHP
 
 ownCloud 对 PHP 的最低要求是版本 5.4。PHP 5.5 或以上版本本文讨论 `APCu` 作为 Memcache 模块，而 PHP 版本 5.4（CentOS 7 和 Ubuntu 等发行版提供）则需要使用 `APC` Memcache 模块，安装方法大致一样。经本人测试，PHP 7 也可以运行 ownCloud，所以推荐使用 PHP 7，性能提升比较大。
 
-#### 模块
+##### 模块
 
 注意：**粗体字**表示这是一个 PHP Core 模块，一般都预先安装好了，或者可以通过包管理安装对应包。如果两者都没有，那就真没有了，**你需要重新编译 PHP 来开启 PHP Core 模块**。`php -m` 可以检查加载了的模块，查看 `php.ini` 和 PHP 模块目录可以知道已经安装了的模块，使用 `pecl`（PHP 的包管理）可以找到动态安装的模块。
 
@@ -164,7 +164,7 @@ ownCloud 对 PHP 的最低要求是版本 5.4。PHP 5.5 或以上版本本文讨
 
 - pcntl
 
-#### 配置
+##### 配置
 
 调整 PHP 的某些设置可以让 PHP 更加安全。参见 [PHPSec][phpsec] 网站提供的信息来打造一个安全的 PHP 环境。
 
@@ -182,14 +182,14 @@ ownCloud 对 PHP 的最低要求是版本 5.4。PHP 5.5 或以上版本本文讨
 
 [phpsec]: http://phpsec.org/projects/phpsecinfo/tests/
 
-### MySQL (MariaDB)
+#### MySQL (MariaDB)
 
 [MariaDB][mariadb] 是一款 [MySQL][mysql] 的开源替代品，使用方法和 [MySQL][mysql] 是一样的。
 
 [mariadb]: https://mariadb.org/
 [mysql]:   https://www.mysql.com/
 
-#### 配置实例
+##### 配置实例
 
 首先确认本机安装有 MariaDB。在 CentOS 7 中你需要安装 `xxx` 软件包来获得 MariaDB 的所有功能。然后执行：
 
@@ -207,7 +207,7 @@ sudo mysql_secure_installation
 
 来 Harden [MariaDB][mariadb] 的安装，增强安全性。设置 root 密码后一路 `y` 即可。完成配置后使用 `sudo systemctl start mysql`（CentOS 7 使用 `sudo systemctl start mariadb`）打开 MariaDB 守护进程。将 `status` 替换为 `enable` 可以使其自启动。
 
-#### 配置用户和数据库
+##### 配置用户和数据库
 
 下面为 ownCloud 新建一个专用用户和数据库。执行：
 
@@ -235,11 +235,11 @@ GRANT ALL PRIVILEGES ON [dbname].* TO '[user]'@'localhost' IDENTIFIED BY '[passw
 
 至此服务器配置完成。
 
-## 配置 ownCloud
+### 配置 ownCloud
 
 进入 ownCloud 页面即可完成基本配置，若没有警告则可顺利使用 ownCloud。以下介绍各项功能优化选项。
 
-### 缓存（Memcache）
+#### 缓存（Memcache）
 
 Memcache 可以将多次请求的内容放在内存里减少 I/O 请求以达到加速后来请求的目的，对性能提升不少，建议开启。因为我们要建立的是一台简单的 ownCloud 服务器，所以我们选用 PHP 的 `APCu` Memcache 模块，配置较 ownCloud 支持的 [`memcached`][memcached] 和 [`redis`][redis] 简单。在 Ubuntu 下，安装 `php5-apcu/trusty-backports` 包。**Ubuntu 主仓库提供的 `APCu` 版本较老（4.0.2），而 ownCloud 需要 `APCu` 版本大于等于 4.0.6，所以要从 `trusty-backports` 仓库安装。**
 
@@ -273,7 +273,7 @@ $CONFIG = array ( // 注意：填在这个数组内
 
 之后 ownCloud 就可以使用 Memcache 加速请求了。
 
-### 改变后台任务执行方式
+#### 改变后台任务执行方式
 
 ownCloud 有一些后台程序用以执行更新缓存、清除垃圾等自维护行为。默认情况下 ownCloud 使用 Ajax 方式执行后台程序：一个请求一次。这是不被推荐的，请求数量一多，后台任务的数量就多（而且还是一模一样的），造成不必要的开销。ownCloud [在其官方指引中](https://doc.owncloud.org/server/9.1/admin_manual/configuration_server/background_jobs_configuration.html)推荐使用 Cronjob 来每 15 分钟执行一次后台任务，在此我们配置 Cronjob。
 
@@ -297,7 +297,7 @@ crontab -u [HTTP User] -l
 
 来检查是否启用任务。之后我们需要在 ownCloud 中选择 Cron 任务执行类型，打开“管理”界面找到“后台任务”选项设置为 Cron 即可。
 
-### 服务器端加密（不推荐开启）
+#### 服务器端加密（不推荐开启）
 
 ownCloud 有一个选项用于开启服务器端加密，可以对上传的文件进行加密处理。**我个人不推荐这么做，原因如下：**
 
@@ -305,18 +305,18 @@ ownCloud 有一个选项用于开启服务器端加密，可以对上传的文�
 - 使用 ownCloud 模块会给系统带来更多开销；
 - 真的 Care 安全性的话~~不如跳舞~~，使用全盘加密效果会更好。
 
-### 二步验证（2FA）
+#### 二步验证（2FA）
 
 ownCloud 可以打开二步验证（双因子认证，Two-Factor Authentication）来通过验证器使得登录更加安全。要使用 2FA 首先需要在 ownCloud 的“应用”中打开这个插件。单击左上角的倒三角，选择“应用”，**并打开左下角隐藏菜单中的“使用实验性功能”**，在“工具”菜单中找到 TOTP 应用，启用即可在用户的个人页面中选择开启 2FA。
 
-### 电子邮件
+#### 电子邮件
 
 ownCloud 可以在用户分享文件、密码丢失等情况下向用户发送邮件。可以选择自建邮件服务器，但是自建服务器容易被外部邮箱判断为垃圾邮件，因其信任度低。ownCloud 支持以内建 SMTP、PHP SMTP 以及系统内置 sendmail 三种方式发送邮件。
 
 使用域名邮箱服务可以借大服务商的邮箱发送自己的邮件。本文不介绍具体操作。
 
-# 附录
+## 附录
 
-## 启用 HTTP 安全连接（HTTPS）
+### 启用 HTTP 安全连接（HTTPS）
 
-## 使用 `occ` 从后台管理 ownCloud
+### 使用 `occ` 从后台管理 ownCloud
