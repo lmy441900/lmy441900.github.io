@@ -319,4 +319,4 @@ ownCloud 可以在用户分享文件、密码丢失等情况下向用户发送�
 
 ### 启用 HTTP 安全连接（HTTPS）
 
-### 使用 `occ` 从后台管理 ownCloud
+### 配置 SELinux
