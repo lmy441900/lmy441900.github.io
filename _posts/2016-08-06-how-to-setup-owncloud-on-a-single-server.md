@@ -120,19 +120,19 @@ ownCloud 对 PHP 的最低要求是版本 5.4。PHP 5.5 或以上版本本文讨
 
 以下模块是运行 ownCloud 所必需的 PHP 模块。
 
-- **ctype**：
-- dom：
-- **GD**：
-- **iconv**：
-- JSON：
-- libxml：
-- multibyte：
-- **posix**：
-- SimpleXML：
-- xmlwriter：
-- **zip**：
-- **zlib**：
-- **curl**：
+- **ctype**
+- dom
+- **GD**
+- **iconv**
+- JSON
+- libxml
+- multibyte
+- **posix**
+- SimpleXML
+- xmlwriter
+- **zip**
+- **zlib**
+- **curl**
 
 对于 PHP 到数据库的连接，**以下模块三选一**。本文只讨论 MySQL(MariaDB)，所以可以只选 `pdo_mysql`。
 
@@ -142,23 +142,23 @@ ownCloud 对 PHP 的最低要求是版本 5.4。PHP 5.5 或以上版本本文讨
 
 某些操作会用到以下模块，如果确认不会用到可以不开。
 
-- **ldap**：
-- smbclient：
-- **ftp**：
-- **imap**：
-- **exif**：
-- **gmp**：
+- **ldap**
+- smbclient
+- **ftp**
+- **imap**
+- **exif**
+- **gmp**
 
 如果开启文件预览（缩略图）会用到以下模块：
 
-- imagick：
+- imagick
 
 如果开启内存缓存（Memcache），**以下模块四选一**。本文只讨论 APCu。
 
-- APC：
-- APCu：
-- memcache：
-- redis：
+- APC
+- APCu
+- memcache
+- redis
 
 以下这个模块貌似可以让你在 php 下响应终端命令（比如说 Ctrl+C）。我也不知道有没有用。
 
