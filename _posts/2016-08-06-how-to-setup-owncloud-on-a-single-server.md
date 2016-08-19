@@ -248,6 +248,7 @@ Memcache 可以将多次请求的内容放在内存里减少 I/O 请求以达到
 ```bash
 pecl install APCu
 # CentOS 7 使用 APC 因为 PHP 版本 5.4
+pecl install APC
 ```
 
 **注意：下载的 `APCu` 以及 `APC` 模块是需要编译的，因此使用这种方法请确保系统已经安装好以下软件包：**
@@ -260,9 +261,14 @@ pecl install APCu
 安装完成 `APCu` 后，编辑 ownCloud 目录中的 `config/config.php` 文件，在其中加入一行：
 
 ```php
-'memcache.local' => '\OC\Memcache\APCu'
-// APC 则填写 APC
-'memcache.local' => '\OC\Memcache\APC'
+<?php
+$CONFIG = array ( // 注意：填在这个数组内
+  // ...
+  'memcache.local' => '\OC\Memcache\APCu'
+  // APC 则填写 APC
+  // 'memcache.local' => '\OC\Memcache\APC'
+  // ...
+);
 ```
 
 之后 ownCloud 就可以使用 Memcache 加速请求了。
