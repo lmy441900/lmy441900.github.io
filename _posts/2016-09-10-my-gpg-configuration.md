@@ -1,0 +1,104 @@
+---
+layout: post
+title:  "My GnuPG configuration"
+date:   2016-09-10
+categories: gpg security
+---
+
+[GnuPG (GPG in short)][gpg] is a well-known cryptographic utility that enables you to encrypt and sign stuff using strong cryptographic methods (RSA, DSA, ECC, etc). [GnuPG][gpg] is also highly-configurable -- that means you can modify its behavior easily. Here I want to share my configuration of [GnuPG][gpg] to you.
+
+**Note:** I am using Linux, and if you're using Windows, you can also find the corresponding configuration file in `%SystemDrive%\Users\%User%\.gnupg`, where `%SystemDrive%` means your system drive, and `%User%` means your user name.
+
+## `~/.gnupg/gpg.conf`
+
+```
+default-key 10294E7C4008E282
+
+ask-cert-level
+armor
+expert
+list-options show-notations
+require-secmem
+with-fingerprint
+with-subkey-fingerprint
+```
+
+### `default-key`
+
+This is used when you have multiple secret keys, and you want to choose a default key.
+
+### `ask-cert-level`
+
+This option let GPG ask the signature level when you're signing other's key. For example:
+
+```
+lmy441900 [ ~ ] $ LANG=C gpg --sign-key veracrypt@idrix.fr
+
+pub  rsa4096/EB559C7C54DDD393
+     created: 2014-06-27  expires: never       usage: SCE
+     trust: unknown       validity: unknown
+[ unknown] (1). VeraCrypt Team <veracrypt@idrix.fr>
+
+gpg: using "4008E282" as default secret key for signing
+
+pub  rsa4096/EB559C7C54DDD393
+     created: 2014-06-27  expires: never       usage: SCE
+     trust: unknown       validity: unknown
+ Primary key fingerprint: 993B 7D7E 8E41 3809 828F  0F29 EB55 9C7C 54DD D393
+
+     VeraCrypt Team <veracrypt@idrix.fr>
+
+How carefully have you verified the key you are about to sign actually belongs
+to the person named above?  If you don't know what to answer, enter "0".
+
+   (0) I will not answer. (default)
+   (1) I have not checked at all.
+   (2) I have done casual checking.
+   (3) I have done very careful checking.
+
+Your selection? (enter '?' for more information):
+```
+
+This option may not be important for you. However, it does indicate how much you trust this key (with the corresponding UID), as well as a reference for others who are going to sign the key too.
+
+### `armor` (or `armour`)
+
+This let GPG put ASCII-armored results. By deafult GPG puts binary results (and even to `stdout`!). Use ASCII text makes your encrypted or signed file more explicit about what it is.
+
+### `list-options show-notations`
+
+This enables GPG to show notations wherever. Notations in a signature usually contains methods to send and receive encrypted emails.
+
+### `require-secmem`
+
+This make GPG run only in a secure memory environment. GPG will alert you when it is in an "insecure" environment. Usually when running in a not-lockable memory or a flash memory disk you will receive such message, but will not terminate operations. This option causes GPG refuse to proceed in this situation.
+
+### `with-fingerprint`
+
+This option turns the long ID displayed in `--list-keys` into the full key fingerprint. It's easier to read.
+
+**DO NOT USE SHORT KEY ID. YOU HAVE BEEN WARNED.**
+
+### `with-subkey-fingerprint`
+
+Let GPG show subkeys' fingerprints too.
+
+## `~/.gnupg/dirmngr.conf`
+
+In new [GnuPG][gpg], key server is connected through `dirmngr`. So key server configurations are in `~/.gnupg/dirmngr.conf`.
+
+```
+keyserver hkp://sks.ustclug.org
+```
+
+This server is run by [USTC LUG](https://lug.ustc.edu.cn/wiki/). It's fast in mainland China, and has joined the [SKS Kerserver Pool](https://sks-keyservers.net/), so upload once, and every keyserver in the pool will receive the key.
+
+You can use these protocols:
+
+- `hkp://`: HTTP Keyserver Protocol
+- `hkps://`: Secure HTTP Keyserver Protocol
+- `ldap://`: LDAP. I don't know how to use it :P
+
+Note that you need a certificate in `.pem` format if you want to use `hkps://` protocol. Using `hkps://` is recommended, if you can get the certificate in `.pem`, yet I can't find one for USTC LUG.
+
+[gpg]: https://gnupg.org/
