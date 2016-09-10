@@ -65,6 +65,51 @@ This option may not be important for you. However, it does indicate how much you
 
 This let GPG put ASCII-armored results. By deafult GPG puts binary results (and even to `stdout`!). Use ASCII text makes your encrypted or signed file more explicit about what it is.
 
+### expert
+
+This option enables GPG to use new features (though those will be not so recommended, for compability reasons), such as ECC keypair generating.
+
+For example, when using `gpg --full-gen-key` to generate a new key pair, we can see:
+
+```
+lmy441900 [ ~ ] $ LANG=C gpg --full-gen-key
+gpg (GnuPG) 2.1.15; Copyright (C) 2016 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Please select what kind of key you want:
+   (1) RSA and RSA (default)
+   (2) DSA and Elgamal
+   (3) DSA (sign only)
+   (4) RSA (sign only)
+Your selection?
+```
+
+with `--expert` option enabled, we can see:
+
+```
+lmy441900 [ ~ ] $ LANG=C gpg --full-gen-key --expert
+gpg (GnuPG) 2.1.15; Copyright (C) 2016 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Please select what kind of key you want:
+   (1) RSA and RSA (default)
+   (2) DSA and Elgamal
+   (3) DSA (sign only)
+   (4) RSA (sign only)
+   (7) DSA (set your own capabilities)
+   (8) RSA (set your own capabilities)
+   (9) ECC and ECC
+  (10) ECC (sign only)
+  (11) ECC (set your own capabilities)
+Your selection?
+```
+
+You can setup your ECC key and authentication-use key only in expert mode. If you want GPG be more simple, you can ignore this option, and add it when you need it.
+
+PS: [ECC](https://en.wikipedia.org/wiki/Elliptic_curve_cryptography) is a more modern algorithm, which provides stronger encryption with shorter key length.
+
 ### list-options show-notations
 
 This enables GPG to show notations wherever. Notations in a signature usually contains methods to send and receive encrypted emails.
