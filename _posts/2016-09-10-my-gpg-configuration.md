@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "My GnuPG configuration"
+title:  "My GnuPG Configuration"
 date:   2016-09-10
 categories: gpg security
 ---
@@ -9,7 +9,7 @@ categories: gpg security
 
 **Note:** I am using Linux, and if you're using Windows, you can also find the corresponding configuration file in `%SystemDrive%\Users\%User%\.gnupg`, where `%SystemDrive%` means your system drive, and `%User%` means your user name.
 
-## `~/.gnupg/gpg.conf`
+## ~/.gnupg/gpg.conf
 
 ```
 default-key 10294E7C4008E282
@@ -23,11 +23,11 @@ with-fingerprint
 with-subkey-fingerprint
 ```
 
-### `default-key`
+### default-key
 
 This is used when you have multiple secret keys, and you want to choose a default key.
 
-### `ask-cert-level`
+### ask-cert-level
 
 This option let GPG ask the signature level when you're signing other's key. For example:
 
@@ -61,29 +61,29 @@ Your selection? (enter '?' for more information):
 
 This option may not be important for you. However, it does indicate how much you trust this key (with the corresponding UID), as well as a reference for others who are going to sign the key too.
 
-### `armor` (or `armour`)
+### armor (or armour)
 
 This let GPG put ASCII-armored results. By deafult GPG puts binary results (and even to `stdout`!). Use ASCII text makes your encrypted or signed file more explicit about what it is.
 
-### `list-options show-notations`
+### list-options show-notations
 
 This enables GPG to show notations wherever. Notations in a signature usually contains methods to send and receive encrypted emails.
 
-### `require-secmem`
+### require-secmem
 
 This make GPG run only in a secure memory environment. GPG will alert you when it is in an "insecure" environment. Usually when running in a not-lockable memory or a flash memory disk you will receive such message, but will not terminate operations. This option causes GPG refuse to proceed in this situation.
 
-### `with-fingerprint`
+### with-fingerprint
 
 This option turns the long ID displayed in `--list-keys` into the full key fingerprint. It's easier to read.
 
 **DO NOT USE SHORT KEY ID. YOU HAVE BEEN WARNED.**
 
-### `with-subkey-fingerprint`
+### with-subkey-fingerprint
 
 Let GPG show subkeys' fingerprints too.
 
-## `~/.gnupg/dirmngr.conf`
+## ~/.gnupg/dirmngr.conf
 
 In new [GnuPG][gpg], key server is connected through `dirmngr`. So key server configurations are in `~/.gnupg/dirmngr.conf`.
 
