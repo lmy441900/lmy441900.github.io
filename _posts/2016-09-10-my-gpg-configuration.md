@@ -116,7 +116,7 @@ This enables GPG to show notations wherever. Notations in a signature usually co
 
 ### require-secmem
 
-This make GPG run only in a secure memory environment. GPG will alert you when it is in an "insecure" environment. Usually when running in a not-lockable memory or a flash memory disk you will receive such message, but will not terminate operations. This option causes GPG refuse to proceed in this situation.
+This make GPG run only in a secure memory environment. GPG will alert you when it is in an "insecure" environment. Usually when running in a not-lockable memory or a flash memory disk you will receive such message, but GPG will not terminate operations. This option causes GPG refuse to proceed in this situation.
 
 ### with-fingerprint
 
