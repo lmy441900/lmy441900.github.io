@@ -18,6 +18,7 @@ Yubikey
   |   |- OTP (2 Slots)
   |       |- Yubico OTP
   |       |- OATH HOTP
+  |       |- (OATH TOTP)
   |       |- Static Password
   |       |- Challenge-Response
   |           |- Yubico OTP
@@ -42,30 +43,38 @@ Universal 2FA 是 [FIDO Alliance][fido] 制定的新一代基于 Challenge-Respo
 - [静态密码][static-pass]
 - [Challenge-Response][chalresp]
 
-在 OTP 功能中，共有 **2 个 Slot**，可以设定以上任意功能到两个 Slot 中。
+在 OTP 功能中，共有 **2 个 Slot**，可以设定以上任意两个功能。
 
 #### Yubico OTP
 
 ~~“最近出现一种人，贴出一串不明字符串来炫耀自己拥有某种硬件。”~~
 
-这就是 [Yubico OTP][yubico-otp]，它以 [YubiCloud][ycloud] 作为中心验证由 Token 传送到服务器的一次性密码。这一功能是默认在 [Yubikey 4][yk] 内的 Slot 1 开启的，所以购买 Yubikey 后插上电脑，第一件事就是轻触按钮发送一串不明字符串来炫耀啦。
+[Yubico OTP][yubico-otp] 以 [YubiCloud][ycloud] 作为中心验证由 Token 传送到服务器的一次性密码。这一功能是默认在 [Yubikey 4][yk] 内的 Slot 1 开启的，所以购买 Yubikey 后插上电脑，第一件事就是轻触按钮发送一串不明字符串来炫耀啦。
 
 #### OATH HOTP
 
-没用过，不知道。
+HOTP 是基于 HMAC（散列消息认证码)的一次性密码（OTP）算法，与 TOTP（基于时间的一次性密码）相比，HOTP 使用一个计数器来达到一次性密码的目的。HOTP 的优点是不需要时钟（因为 Yubikey 里头也没有时钟），但是如果不小心按到了，这个计数器就和服务器不同步了，就需要重新同步。
+
+#### OATH TOTP
+
+**注意：Yubikey 也是可以使用 TOTP 的。**
+
+因为 Yubikey 并没有硬件时钟，所以需要借助电脑本身的帮助。Yubico [有一款 TOTP 应用][otp-app]，可以使用这款应用来计算 TOTP 结果。
 
 #### 静态密码
 
 顾名思义，输出一串固定的字符串作为密码。看起来一点卵用都没有（用个笔记本一装不就出来了嘛），但是这货在任何有密码输入框的地方都能使用，因此可以借助 Yubikey 输出一串非常难记而且预先随机生成的字符串来增强密码复杂度。
 
-但是如果你觉得可以靠这个功能免手输密码，**那就完蛋了**，只要 Yubikey 遗失，后果不堪设想。所以静态密码的优雅且正确用法是：
+但是如果你觉得可以靠这个功能免手输密码，**我只能说呵呵**，只要 Yubikey 遗失，后果不堪设想。所以静态密码的优雅且正确用法是：
 
 - 输入一段自己的常规密码
-- 在任何地方再插入 Yubikey 的随机密码（可以是在自己的密码前面、中间、后面，如果不想 Yubikey 自动按下回车键可以在 Yubikey Personalization Tool 里面的 Settings 取消 Yubikey 在最后输出 `\n` 的功能）
+- 在任何地方再插入 Yubikey 的随机密码（可以是在自己的密码前面、中间、后面；如果不想 Yubikey 自动按下回车键可以在 Yubikey Personalization Tool 里面的 Settings 取消 Yubikey 在最后输出 `\n` 的功能）
 
 #### Challenge-Response
 
 Challenge-Response 在 Yubikey 4 中有两种模式：Yubico OTP 和 HMAC-SHA1。Yubico OTP 可以在基于 Challenge-Response 的情况下以 Yubico OTP 的方式来做验证，需要网络连接到 YubiCloud；而 HMAC-SHA1 则是用于离线验证。
+
+一般的应用可以是 Linux PAM；可以安装 [Yubico 提供的 Linux PAM 模块][yubico-pam]来启用验证。（但是我不清楚怎么优雅地用）
 
 ### PIV
 
@@ -97,6 +106,8 @@ OpenPGP 卡配合 GPG 使用，用来存放 GPG 私钥（**拿不出来的**）�
 [yubico]:       https://yubico.com
 [yubico-otp]:   https://developers.yubico.com/OTP/
 [oath-hotp]:    https://developers.yubico.com/OATH/#_hotp
+[otp-app]:      https://github.com/Yubico/yubioath-desktop
+[yubico-pam]:   https://github.com/Yubico/yubico-pam
 [static-pass]:  https://yubi.co/4
 [chalresp]:     https://yubi.co/4
 [ycloud]:       https://www.yubico.com/products/services-software/yubicloud/
