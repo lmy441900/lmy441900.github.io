@@ -5,13 +5,13 @@ date:   2016-12-12
 categories: lfs mips
 ---
 
-最近在做 AOSC OS 的 MIPS64el 移植相关尝试，目标平台是 MIPS64r2 通用，采用 N64 ABI。因为不想在交叉编译的 Stage 1 上花费时间，加上我手上这台 MIPS 机器性能足够好（一台龙芯 3A2000C，8 GB 内存），就想直接基于龙芯开源社区的 Loongnix Linux 进行 LFS。以下是我踩过一些坑以后的总结。
+最近在做 AOSC OS 的 MIPS64el 移植相关尝试，目标平台是 MIPS64r2 通用，采用 N64 ABI。因为不想在交叉编译的 Stage 1 上花费时间，加上我手上这台 MIPS 机器性能足够好（一台[龙芯 3A2000C](http://loongson.cn/product/cpu/3/Loongson3A2000.html)，8 GB 内存），就想直接基于龙芯开源社区的 Loongnix Linux 进行 LFS。以下是我踩过一些坑以后的总结。
 
-首先是过程和官方 LFS 大致上并无差异，我在参考 CLFS 和 AOSC OS 基本参数的基础上大致遵守了 LFS 的构建规范，毕竟这也确实是一个 LFS 过程。一开始的几次失败让我感觉到玄学特多，但是思路清晰了之后发现其实不过是一些 MIPS 平台特有的特性在影响构建过程，以及 LFS 本身的坑。
+首先是过程和[官方 LFS](http://www.linuxfromscratch.org/lfs/view/stable-systemd/index.html) 大致上并无差异，我在参考 [CLFS (Pure 64)](http://www.clfs.org/view/CLFS-3.0.0-SYSTEMD/mips64-64/index.html) 和 AOSC OS 基本参数的基础上大致遵守了 LFS 的构建规范，毕竟这也确实是一个 LFS 过程。一开始的几次失败让我感觉到玄学特多，但是思路清晰了之后发现其实不过是一些 MIPS 平台特有的特性在影响构建过程，以及 LFS 本身的坑。
 
 ## MIPS 特有属性
 
-MIPS 平台和 x86 平台的一个比较大的差异就在于 ABI。在 MIPS 平台上同时存在三种 ABI：
+MIPS 平台和 x86 平台的一个比较大的差异就在于 [ABI](https://en.wikipedia.org/wiki/Application_binary_interface)。在 MIPS 平台上同时存在[三种 ABI](https://www.linux-mips.org/wiki/WhatsWrongWithO32N32N64)：
 
 - o32（`-mabi=32`）
 - n32（`-mabi=n32`）
