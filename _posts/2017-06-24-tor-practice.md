@@ -34,9 +34,11 @@ Socks5Proxy 127.0.0.1:<PORT>
 
 就可以让 Tor 客户端走本地代理出站了。
 
-## 使用 Tails
+## 使用 [Tails][]
 
 Tails 在系统全局网络连接上开启了 Tor，而且系统内也没有 SS，自己带上一个也很麻烦，就需要用另一台电脑或者手机做本地代理服务器。
+
+[Tails]: https://tails.boum.org/
 
 ### 用 PC 给 Tails 做代理
 
