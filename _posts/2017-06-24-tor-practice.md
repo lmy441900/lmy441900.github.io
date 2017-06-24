@@ -44,7 +44,7 @@ Tails 在系统全局网络连接上开启了 Tor，而且系统内也没有 SS�
 
 首先在第二台电脑上设立 SS 代理服务器。以 [ss-qt5][] 为例，编辑服务器选项，将“本地地址”改为电脑目前所在的 IP 地址（别的不行），注意端口不要冲突，然后连接即可在设置好的端口上建立 SS 代理。
 
-启动 Tails，在欢迎界面里的 **Additional Settings** 添加 **Network Connection**，选择 **Bridge & Proxy**，再启动到 Tails 连接网络，按照[“本机通过 SS 连接 Tor”](#本机通过-SS-连接-Tor)章节的步骤进行配置即可。**注意在地址里要写代理服务器的 IP 地址和代理端口！**
+启动 Tails，在欢迎界面里的 **Additional Settings** 添加 **Network Connection**，选择 **Bridge & Proxy**，再启动到 Tails 连接网络，按照[“本机通过 SS 连接 Tor”](#本机通过-ss-连接-tor)章节的步骤进行配置即可。**注意在地址里要写代理服务器的 IP 地址和代理端口！**
 
 [ss-qt5]: https://github.com/shadowsocks/shadowsocks-qt5
 
