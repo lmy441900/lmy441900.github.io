@@ -65,6 +65,6 @@ Orbot 是 Tor 在安卓平台上的实现（就是有点慢）。要让 Tor 走 
 ## 注
 
 [^1]: 盖子这么说的。
-[^2]: https://www.torproject.org/download/download-easy.html.en#warning "...by default, it does not prevent somebody watching your Internet traffic from learning that you're using Tor. If this matters to you, you can reduce this risk by configuring Tor to use a Tor bridge relay rather than connecting directly to the public Tor network."
-[^3]: https://github.com/shadowsocks/shadowsocks-qt5/wiki/%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C#%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E
-[^4]: Tor 不建议这样做。参见（需要梯子）：https://www.torproject.org/download/download-easy.html.en#warning
+[^2]: <https://www.torproject.org/download/download-easy.html.en#warning> "...by default, it does not prevent somebody watching your Internet traffic from learning that you're using Tor. If this matters to you, you can reduce this risk by configuring Tor to use a Tor bridge relay rather than connecting directly to the public Tor network."
+[^3]: <https://github.com/shadowsocks/shadowsocks-qt5/wiki/%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C#%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E>
+[^4]: Tor 不建议这样做。参见（需要梯子）：<https://www.torproject.org/download/download-easy.html.en#warning>
