@@ -86,7 +86,7 @@ Challenge-Response 在 Yubikey 4 中有两种模式：Yubico OTP 和 HMAC-SHA1�
 - 9c 数字签名；
 - 9d Key Management“密钥管理”，用于加密；
 - 9e ~~不知道~~ Yubico 在[官方文档](https://developers.yubico.com/PIV/Introduction/Certificate_slots.html)中介绍 9e 中的密钥用于支持别的一些诸如 PIV 门锁这样的物理应用（也就是说，不是在电脑上操作 Yubikey）；
-  - 网友反馈存取 9e 中的证书和密钥是唯一一个**不需要输入 PIN** 的 Slot。反正我是楞没搞明白，不设 PIN 和咸鱼有什么区别……。
+  - 网友 Yanru Huang（竟然有人跟我互动诶）反馈存取 9e 中的证书和密钥是唯一一个**不需要输入 PIN** 的 Slot。反正我是楞没搞明白，不设 PIN 和咸鱼有什么区别……。
 - 82-95 ~~是过时的证书的 Slot~~ 用于存放 9d Slot 中不再使用（吊销了或者是怎么的）的证书，这部分是用来保证不会出现无法再解密之前用吊销了的证书加密的内容这种尴尬的事情。
 - f9 (>=4.3) 不知道
 
