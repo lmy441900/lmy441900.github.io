@@ -20,9 +20,10 @@ Yubikey
   |       |- OATH HOTP
   |       |- (OATH TOTP)
   |       |- Static Password
-  |       |- Challenge-Response
-  |           |- Yubico OTP
-  |           |- HMAC-SHA1
+  |
+  |- Challenge-Response
+  |    |- Yubico OTP
+  |    |- HMAC-SHA1
   |
   |- Smart Card
       |- PIV (18 Slots, mainly 4 slots)
@@ -70,7 +71,7 @@ HOTP 是基于 HMAC（散列消息认证码)的一次性密码（OTP）算法，
 - 输入一段自己的常规密码
 - 在任何地方再插入 Yubikey 的随机密码（可以是在自己的密码前面、中间、后面；如果不想 Yubikey 自动按下回车键可以在 Yubikey Personalization Tool 里面的 Settings 取消 Yubikey 在最后输出 `\n` 的功能）
 
-#### Challenge-Response
+### Challenge-Response
 
 Challenge-Response 在 Yubikey 4 中有两种模式：Yubico OTP 和 HMAC-SHA1。Yubico OTP 可以在基于 Challenge-Response 的情况下以 Yubico OTP 的方式来做验证，需要网络连接到 YubiCloud；而 HMAC-SHA1 则是用于离线验证。
 
