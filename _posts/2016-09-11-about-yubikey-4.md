@@ -2,7 +2,7 @@
 layout: post
 title:  "关于 Yubikey 4 的一些玄学"
 date:   2016-09-10
-categories: yubikey security
+categories: security yubikey
 ---
 
 大概在两个月前自行入了一枚 [Yubikey 4][yk]，本来想着就是当 [OpenPGP Card][pgpc] 和 [U2F][u2f] 用的，结果发现 [Yubikey 4][yk] 的各种功能和用法简直是魔幻般的玄学。网上的一些长者的人生经验，包括官方钦定的文档，好像都没怎么系统地讲清楚 [Yubikey 4][yk] 的功能，这里我想把我两个月来折腾的心得分享一下。

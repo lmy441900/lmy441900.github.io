@@ -2,7 +2,7 @@
 layout: post
 title:  "My GnuPG Configuration"
 date:   2016-09-10
-categories: gpg security
+categories: security gpg
 ---
 
 [GnuPG (GPG in short)][gpg] is a well-known cryptographic utility that enables you to encrypt and sign stuff using strong cryptographic methods (RSA, DSA, ECC, etc). [GnuPG][gpg] is also highly-configurable -- that means you can modify its behavior easily. Here I want to share my configuration of [GnuPG][gpg] to you.

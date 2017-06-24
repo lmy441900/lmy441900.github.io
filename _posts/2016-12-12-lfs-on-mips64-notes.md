@@ -2,7 +2,7 @@
 layout: post
 title:  "LFS on MIPS64 笔记"
 date:   2016-12-12
-categories: lfs mips
+categories: mips lfs
 ---
 
 最近在做 AOSC OS 的 MIPS64el 移植相关尝试，目标平台是 MIPS64r2 通用，采用 N64 ABI。因为不想在交叉编译的 Stage 1 上花费时间，加上我手上这台 MIPS 机器性能足够好（一台[龙芯 3A2000C](http://loongson.cn/product/cpu/3/Loongson3A2000.html)，8 GB 内存），就想直接基于龙芯开源社区的 Loongnix Linux 进行 LFS。以下是我踩过一些坑以后的总结。
