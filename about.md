@@ -22,6 +22,4 @@ You can contact me over:
 [uic]:      http://uic.edu.hk
 [keybase]:  https://keybase.io/lmy441900
 [mit-pgp]:  http://pgp.mit.edu/pks/lookup?search=0x10294E7C4008E282
-<!-- [this-pgp]: /pubkey.asc -->
-[this-pgp]: /gpg
 [tg]:       https://t.me/lmy441900
