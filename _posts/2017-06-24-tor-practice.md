@@ -50,7 +50,15 @@ Tails 在系统全局网络连接上开启了 Tor，而且系统内也没有 SS�
 
 ### 用手机给 Tails 做代理
 
-不清楚怎么让 SS 代理热点流量……（好像不 Root 是不可以的）
+~~不清楚怎么让 SS 代理热点流量……（好像不 Root 是不可以的）~~ 在 Play Store 上找到了一个超级旧但是功能还蛮强大的 App 叫 [Proxy Server][]，通过这个 App 可以不需要 Root 在 Android 手机上设置一个代理转发流量。
+
+1. 按左上角 **Add**，选 **Proxy Server**
+2. **Server name** 处给代理服务器取个名字（因为这款 App（在购买之后）可以同时设立很多个代理服务器，所以可以取名字），然后在 **Run on port** 处填写要设立代理服务器的端口（也可以按 **Get random port** 来随机生成一个端口）。
+3. 勾选 **Forward all requests to the same host**，然后在下面的 **Forward to host** 填写 **127.0.0.1**，**Forward to port** 填写 SS 上设置的“本地端口”。
+4. 返回，点 Yes（为什么没有保存按钮呢），然后点击列表里刚刚创建好的配置文件，点 **Start / Stop**，一个转发到 SS 的代理服务器就设置好了。
+  - Tips：按 **Info** 可以查看手机目前的 IP 地址以便连接。
+
+[Proxy Server]: https://play.google.com/store/apps/details?id=com.icecoldapps.proxyserver
 
 ## 在 Android 上使用 Orbot
 
