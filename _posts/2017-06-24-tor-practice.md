@@ -62,7 +62,7 @@ Tails 在系统全局网络连接上开启了 Tor，而且系统内也没有 SS�
 
 ## 在 Android 上使用 Orbot
 
-Orbot 是 Tor 在安卓平台上的实现（就是有点慢）。要让 Tor 走 SS：
+Orbot 是 Tor 在安卓平台上的实现。要让 Tor 走 SS：
 
 1. 首先要注意 SS 上的“本地端口”，SS 在这个端口上设立了本地代理，我们让 Tor 走这里。
 2. 在 Orfox 里，点击右上角菜单进入 Settings（设置），在 **Outbound Network Proxy（出站网络代理）** 处，填写（出站代理类型） 为 **`Socks5`**，填写（出站代理主机）为 **`127.0.0.1`** 或 **`localhost`**，（出站代理端口）为 SS 上设置的“本地端口”。
