@@ -17,7 +17,6 @@ default-key 10294E7C4008E282
 ask-cert-level
 armor
 expert
-list-options show-notations
 require-secmem
 with-fingerprint
 with-subkey-fingerprint
@@ -109,10 +108,6 @@ Your selection?
 You can setup your ECC key and authentication-use key only in expert mode. If you want GPG be more simple, you can ignore this option, and add it when you need it.
 
 PS: [ECC](https://en.wikipedia.org/wiki/Elliptic_curve_cryptography) is a more modern algorithm, which provides stronger encryption with shorter key length.
-
-### list-options show-notations
-
-This enables GPG to show notations wherever. Notations in a signature usually contains methods to send and receive encrypted emails.
 
 ### require-secmem
 
