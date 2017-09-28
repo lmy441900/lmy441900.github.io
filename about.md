@@ -11,6 +11,7 @@ My GPG key fingerprint is `42F6 3E9D 68B9 884B 414D  4185 1029 4E7C 4008 E282`. 
 You can contact me over:
 
 - [Telegram][tg].
+- Signal (if you can get my phone number (but how?)).
 - Email (I hate spam. "Punkt" is German.)
   - Personal: lmy441900 AT gmail #DOT com
   - Work (AOSC and development related): lmy441900 AT aosc PUNKT xyz
@@ -18,6 +19,8 @@ You can contact me over:
     - lmy441900 # protonmail PUNKT com
     - lmy441900 AT fwb2cosocslxnvtg PUNKT onion (lmy441900 AT onionmail DOT# info)
 - WeChat, Tencent QQ: Please don't. However, if you insist, you can request. <!-- You actually can get it from somewhere. -->
+
+**OMG! THOSE SPAM EMAILS ARE NOW EVERYWHERE. I think they must have searched those OpenPGP keyservers (since there are emails on the UID).**
 
 [uic]:      http://uic.edu.hk
 [keybase]:  https://keybase.io/lmy441900
