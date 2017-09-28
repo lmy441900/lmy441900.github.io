@@ -33,7 +33,7 @@ Yubikey
 
 ### U2F
 
-Universal 2FA 是 [FIDO Alliance][fido] 制定的新一代基于 Challenge-Response 的二步验证机制，[Yubico][yubico] 作为 FIDO 的成员之一当然是不遗余力地推出了多款 U2F USB Token，[Yubikey 4][yk] 就是一款集成了 [U2F][u2f] 的产品。[Yubikey 4][yk] 的 U2F 功能是开箱即用的；插入 Yubikey，打开网站的设备注册，当绿灯闪烁的时候轻触按钮，便可提高账户安全性。
+Universal 2FA 是 [FIDO Alliance][fido] 制定的新一代基于 Challenge-Response 的二步验证机制，[Yubico][yubico] 作为 FIDO 的成员之一当然是不遗余力地推出了多款 U2F USB Token，[Yubikey 4][yk] 就是一款集成了 [U2F][u2f] 的产品。[Yubikey 4][yk] 的 U2F 功能~~是开箱即用的~~需要安装 `libu2f-host`（这种的）包，安装对应库及应用 udev 规则来使用。插入 Yubikey，打开网站的设备注册，当绿灯闪烁的时候轻触按钮，便可提高账户安全性。
 
 ### OTP
 
@@ -44,7 +44,7 @@ Universal 2FA 是 [FIDO Alliance][fido] 制定的新一代基于 Challenge-Respo
 - [静态密码][static-pass]
 - [Challenge-Response][chalresp]
 
-在 OTP 功能中，共有 **2 个 Slot**，可以设定以上任意两个功能。
+在 OTP 功能中，共有 **2 个 Slot**，可以设定以上任意两个功能。注意 Challenge-Response 也占用这里面的一个 Slot。
 
 #### Yubico OTP
 
@@ -58,9 +58,8 @@ HOTP 是基于 HMAC（散列消息认证码)的一次性密码（OTP）算法，
 
 #### OATH TOTP
 
-**注意：Yubikey 也是可以使用 TOTP 的。**
-
-因为 Yubikey 并没有硬件时钟，所以需要借助电脑本身的帮助。Yubico [有一款 TOTP 应用][otp-app]，可以使用这款应用来计算 TOTP 结果。
+**Yubikey 也是可以使用 TOTP 的。**
+但是，因为 Yubikey 并没有硬件时钟，所以需要借助电脑本身的帮助。Yubico [有一款 TOTP 应用][otp-app]，可以使用这款应用来计算 TOTP 结果。
 
 #### 静态密码
 
@@ -76,6 +75,10 @@ HOTP 是基于 HMAC（散列消息认证码)的一次性密码（OTP）算法，
 Challenge-Response 在 Yubikey 4 中有两种模式：Yubico OTP 和 HMAC-SHA1。Yubico OTP 可以在基于 Challenge-Response 的情况下以 Yubico OTP 的方式来做验证，需要网络连接到 YubiCloud；而 HMAC-SHA1 则是用于离线验证。
 
 一般的应用可以是 Linux PAM；可以安装 [Yubico 提供的 Linux PAM 模块][yubico-pam]来启用验证。（但是我不清楚怎么优雅地用）
+
+嗯对了，最近在用 [KeePassXC][keepassxc]，这款 [KeePassX][keepassx] 的“社区升级版本”（KeePass Cross-Platform Community Edition）能利用到 Yubikey 的此 Challenge-Response 功能，可以配置打开密码数据库的时候同时使用 Challenge-Response 来加强数据库安全性。
+
+- 稍微提一下，在 Android 上有一款 KeePassX(C) 兼容的 App，[Keepass2Android](keepass2android)，它同样支持 Challenge-Response 功能，不过它要求一个种子文件（我不很清楚这是什么操作）。KeePassXC 不支持这种操作，但是 KeePassXC 希望这些应用采用他们的解决方案。
 
 ### PIV
 
@@ -110,6 +113,9 @@ OpenPGP 卡配合 GPG 使用，用来存放 GPG 私钥（**拿不出来的**）�
 [oath-hotp]:    https://developers.yubico.com/OATH/#_hotp
 [otp-app]:      https://github.com/Yubico/yubioath-desktop
 [yubico-pam]:   https://github.com/Yubico/yubico-pam
+[keepassxc]:    https://keepassxc.org/
+[keepassx]:     https://www.keepassx.org/
+[keepass2android]: https://play.google.com/store/apps/details?id=keepass2android.keepass2android
 [static-pass]:  https://yubi.co/4
 [chalresp]:     https://yubi.co/4
 [ycloud]:       https://www.yubico.com/products/services-software/yubicloud/
