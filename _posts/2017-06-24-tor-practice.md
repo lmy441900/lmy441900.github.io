@@ -42,15 +42,15 @@ Tails 在系统全局网络连接上开启了 Tor，而且系统内也没有 SS�
 
 ### 用 PC 给 Tails 做代理
 
-首先在第二台电脑上设立 SS 代理服务器。以 [ss-qt5][] 为例，编辑服务器选项，将“本地地址”改为电脑目前所在的 IP 地址（别的不行），注意端口不要冲突，然后连接即可在设置好的端口上建立 SS 代理。
+首先在第二台电脑上设立 SS 代理服务器。以 [ss-qt5][] 为例，编辑服务器选项，将“本地地址”改为~~电脑目前所在的 IP 地址（别的不行），注意端口不要冲突~~ **0.0.0.0**（这个地址表示同时监听本机流量和外部传入流量），然后连接即可在设置好的端口上建立 SS 代理。
 
-启动 Tails，在欢迎界面里的 **Additional Settings** 添加 **Network Connection**，选择 **Bridge & Proxy**，再启动到 Tails 连接网络，按照[“本机通过 SS 连接 Tor”](#本机通过-ss-连接-tor)章节的步骤进行配置即可。**注意在地址里要写代理服务器的 IP 地址和代理端口！**
+启动 Tails，在欢迎界面里的 **Additional Settings** 添加 **Network Connection**，选择 **Bridge & Proxy**，再启动到 Tails 连接网络，按照[“本机通过 SS 连接 Tor”](#本机通过-ss-连接-tor)章节的步骤进行配置即可。
 
 [ss-qt5]: https://github.com/shadowsocks/shadowsocks-qt5
 
 ### 用手机给 Tails 做代理
 
-~~不清楚怎么让 SS 代理热点流量……（好像不 Root 是不可以的）~~ 在 Play Store 上找到了一个超级旧但是功能还蛮强大的 App 叫 [Proxy Server][]，通过这个 App 可以不需要 Root 在 Android 手机上设置一个代理转发流量。
+~~不清楚怎么让 SS 代理热点流量……~~ 在 Play Store 上找到了一个超级旧但是功能还蛮强大的 App 叫 [Proxy Server][]，通过这个 App 可以在 Android 手机上设置一个代理转发流量。
 
 1. 按左上角 **Add**，选 **Proxy Server**
 2. **Server name** 处给代理服务器取个名字（因为这款 App（在购买之后）可以同时设立很多个代理服务器，所以可以取名字），然后在 **Run on port** 处填写要设立代理服务器的端口（也可以按 **Get random port** 来随机生成一个端口）。
@@ -69,6 +69,7 @@ Orbot 是 Tor 在安卓平台上的实现。要让 Tor 走 SS：
   - 此处注意：**不需要在 SS 里为 Orbot 和 Orfox 设置分应用代理**，这样反而可能会造成连接问题。
 3. 长按洋葱或者点击 Start 就可以通过 SS 连接洋葱网络了。
   - Tips：屏幕右边缘向左拉是日志窗口，可以看到连接实时进度，只要看到 _"NOTICE: Bootstrapped 100%: Done"_ 就说明已经完全建立 Tor 链路了。
+    - 新的 Orbot 还能在屏幕下方显示当前状态，唔。
 
 要使用 Orbot，需要配合 Orfox 或者别的设计为配合 Orbot 的应用使用，不过 Orbot 也设立了一个本地代理端口（默认 9050），其它应用也可以使用本地代理（如果可以）访问 Tor 网络。[^4]
 
