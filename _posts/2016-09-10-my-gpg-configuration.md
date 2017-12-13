@@ -12,10 +12,10 @@ categories: security gpg
 ## ~/.gnupg/gpg.conf
 
 ```
-default-key 10294E7C4008E282
+# default-key 10294E7C4008E282
 
 ask-cert-level
-armor
+# armor
 expert
 require-secmem
 with-fingerprint
@@ -25,6 +25,8 @@ with-subkey-fingerprint
 ### default-key
 
 This is used when you have multiple secret keys, and you want to choose a default key.
+
+**This is usually unnecessary.** Since your UID contains your email address, GPG can easily recognize which key should be used (unless you have multiple keys with the same UID).
 
 ### ask-cert-level
 
@@ -62,7 +64,9 @@ This option may not be important for you. However, it does indicate how much you
 
 ### armor (or armour)
 
-This let GPG put ASCII-armored results. By deafult GPG puts binary results (and even to `stdout`!). Use ASCII text makes your encrypted or signed file more explicit about what it is.
+This let GPG put ASCII-armored results. ~~By deafult GPG puts binary results (and even to `stdout`!).~~ Use ASCII text makes your encrypted or signed file more explicit about what it is.
+
+Update: GPG is now smart enough...
 
 ### expert
 
@@ -107,7 +111,7 @@ Your selection?
 
 You can setup your ECC key and authentication-use key only in expert mode. If you want GPG be more simple, you can ignore this option, and add it when you need it.
 
-PS: [ECC](https://en.wikipedia.org/wiki/Elliptic_curve_cryptography) is a more modern algorithm, which provides stronger encryption with shorter key length.
+PS: [ECC](https://en.wikipedia.org/wiki/Elliptic_curve_cryptography) is a more modern algorithm, which provides stronger encryption with shorter key length. (Use curve25519!)
 
 ### require-secmem
 
@@ -117,7 +121,7 @@ This make GPG run only in a secure memory environment. GPG will alert you when i
 
 This option turns the long ID displayed in `--list-keys` into the full key fingerprint. It's easier to read.
 
-**DO NOT USE SHORT KEY ID. YOU HAVE BEEN WARNED.**
+**DO NOT USE SHORT KEY ID. YOU HAVE BEEN WARNED.** (Collision can happen)
 
 ### with-subkey-fingerprint
 
@@ -128,7 +132,8 @@ Let GPG show subkeys' fingerprints too.
 In new [GnuPG][gpg], key server is connected through `dirmngr`. So key server configurations are in `~/.gnupg/dirmngr.conf`.
 
 ```
-keyserver hkp://sks.ustclug.org
+keyserver hkps://sks.ustclug.org
+keyserver hkps://pgp.mit.edu
 ```
 
 This server is run by [USTC LUG](https://lug.ustc.edu.cn/wiki/). It's fast in mainland China, and has joined the [SKS Kerserver Pool](https://sks-keyservers.net/), so upload once, and every keyserver in the pool will receive the key.
@@ -139,6 +144,6 @@ You can use these protocols:
 - `hkps://`: Secure HTTP Keyserver Protocol
 - `ldap://`: LDAP. I don't know how to use it :P
 
-Note that you need a certificate in `.pem` format if you want to use `hkps://` protocol. Using `hkps://` is recommended, if you can get the certificate in `.pem`, yet I can't find one for USTC LUG.
+~~Note that you need a certificate in `.pem` format if you want to use `hkps://` protocol. Using `hkps://` is recommended, if you can get the certificate in `.pem`, yet I can't find one for USTC LUG.~~ _(It is usable now)_
 
 [gpg]: https://gnupg.org/
