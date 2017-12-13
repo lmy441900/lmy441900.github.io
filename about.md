@@ -12,14 +12,14 @@ You can contact me over:
 
 - [Telegram][tg].
 - Signal (if you can get my phone number (but how?)).
-- Keybase (well, if you trust their wheels).
+- [Tox][tox]: A9AD62B687A7D75A45EDBE2BE790CFA679C6ED37CE24700D172DEA6AACB756570E50CA21A118.
 - Email (I hate spam. "Punkt" is German).
   - Personal: lmy441900 AT gmail #DOT com
   - Work (AOSC and development related): lmy441900 AT aosc PUNKT xyz
   - Secure contact: **(I may not check them frequently, so you may remind me by other means.)**
     - lmy441900 # protonmail PUNKT com
     - lmy441900 AT fwb2cosocslxnvtg PUNKT onion (lmy441900 AT onionmail DOT# info)
-- WeChat, Tencent QQ: Please don't. However, if you insist, you can request. <!-- You actually can get them from somewhere. -->
+- WeChat, Tencent QQ: Please don't. <!-- You actually can get them from somewhere. -->
 
 PS: **OMG! THOSE SPAM EMAILS ARE NOW EVERYWHERE. I think they must have searched those OpenPGP keyservers (since there are emails on the UID).**
 
@@ -27,3 +27,4 @@ PS: **OMG! THOSE SPAM EMAILS ARE NOW EVERYWHERE. I think they must have searched
 [keybase]:  https://keybase.io/lmy441900
 [mit-pgp]:  http://pgp.mit.edu/pks/lookup?search=0x10294E7C4008E282
 [tg]:       https://t.me/lmy441900
+[tox]:      tox:A9AD62B687A7D75A45EDBE2BE790CFA679C6ED37CE24700D172DEA6AACB756570E50CA21A118
