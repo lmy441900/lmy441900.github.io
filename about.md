@@ -15,9 +15,7 @@ You can contact me over:
 - Email (I hate spam. "Punkt" is German).
   - Personal: lmy441900 AT gmail #DOT com
   - Work (AOSC and development related): lmy441900 AT aosc PUNKT xyz
-  - Secure contact: **(I may not check them frequently, so you may remind me by other means.)**
-    - lmy441900 # protonmail PUNKT com
-    - lmy441900 AT fwb2cosocslxnvtg PUNKT onion (lmy441900 AT onionmail DOT# info)
+  - Also lmy441900 # protonmail PUNKT com (I may not check it frequently)
 - WeChat, Tencent QQ: Please don't. <!-- You actually can get them from somewhere. -->
 
 PS: **OMG! THOSE SPAM EMAILS ARE NOW EVERYWHERE. I think they must have searched those OpenPGP keyservers (since there are emails on the UID).**
