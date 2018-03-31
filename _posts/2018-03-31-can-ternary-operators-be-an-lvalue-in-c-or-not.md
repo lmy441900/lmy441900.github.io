@@ -63,6 +63,6 @@ So how come my teacher could prove that my answer was correct? **It was because 
 ## References
 
 - [https://en.wikipedia.org/wiki/%3F:](https://en.wikipedia.org/wiki/%3F:)
-- http://en.cppreference.com/w/c/language/operator_precedence
-- http://en.cppreference.com/w/cpp/language/operator_precedence
-- On "lvalue" and "rvalue": https://en.wikipedia.org/wiki/Value_(computer_science)#lrvalue
+- [http://en.cppreference.com/w/c/language/operator_precedence](http://en.cppreference.com/w/c/language/operator_precedence)
+- [http://en.cppreference.com/w/cpp/language/operator_precedence](http://en.cppreference.com/w/cpp/language/operator_precedence)
+- On "lvalue" and "rvalue": [https://en.wikipedia.org/wiki/Value_(computer_science)#lrvalue](https://en.wikipedia.org/wiki/Value_(computer_science)#lrvalue)
