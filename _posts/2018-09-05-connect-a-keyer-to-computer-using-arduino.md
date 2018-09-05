@@ -7,7 +7,7 @@ categories: ham
 
 ![My keyer](/assets/keyer.jpg)
 
-_Figure 1. My CJG-K4 keyer purchased from Taobao_
+_Figure 1. My DJG-K4 keyer purchased from Taobao_
 
 Recently I take an interest in the amateur radio sports and I have been planning to get a license from [CRAC] for a month. Few days ago I bought a CW keyer (although I will not have the chance to operate on [MF] before I got the B license), but had no idea how to connect it to a computer.
 
