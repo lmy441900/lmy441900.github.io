@@ -22,7 +22,7 @@ _Figure 2. CJMCU Beetle development board, looks like a USB dongle_
 
 It is quite simple to program the logic. Basically speaking, we set one of the digital pins to be an input, and connect one of the keyer's plug contact to it; we also connect GND to another plug contact (see the code below). When we detect a closed circuit on that pin, we use Arduino's Mouse library to press the mouse. When we detect an open circuit, we release the mouse. That's it!
 
-```arduino
+```c
 #include <Arduino.h>
 #include <Mouse.h>
 
