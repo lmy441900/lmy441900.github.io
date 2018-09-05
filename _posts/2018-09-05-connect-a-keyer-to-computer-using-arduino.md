@@ -5,10 +5,10 @@ date:   2018-09-05
 categories: ham
 ---
 
-Recently I take an interest in the amateur radio sports and I have been planning to get a license from [CRAC] for a month. Few days ago I bought a CW keyer (although I will not have the chance to operate on [MF] before I got the B license), but had no idea how to connect it to a computer.
+Recently I take an interest in the amateur radio sports and I have been planning to get a license from [CRAC] for a month. Few days ago I bought a CW keyer (although I will not have the chance to operate on [SW] before I got the B license), but had no idea how to connect it to a computer.
 
 [CRAC]: http://www.crac.org.cn/
-[MF]:   https://en.wikipedia.org/wiki/Short_wave
+[SW]:   https://en.wikipedia.org/wiki/Short_wave
 
 ![My keyer](/assets/keyer.jpg)
 
