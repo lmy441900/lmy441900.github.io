@@ -5,14 +5,14 @@ date:   2018-09-05
 categories: ham
 ---
 
-![My keyer](/assets/keyer.jpg)
-
-_Figure 1. My DJG-K4 keyer purchased from Taobao_
-
 Recently I take an interest in the amateur radio sports and I have been planning to get a license from [CRAC] for a month. Few days ago I bought a CW keyer (although I will not have the chance to operate on [MF] before I got the B license), but had no idea how to connect it to a computer.
 
 [CRAC]: http://www.crac.org.cn/
 [MF]:   https://en.wikipedia.org/wiki/Short_wave
+
+![My keyer](/assets/keyer.jpg)
+
+_Figure 1. My DJG-K4 keyer purchased from Taobao_
 
 There are resolutions that disassembling an old mouse, soldering the two contacts to the pads of left button, turning the keyer to be a mouse's left button. However I have no old mouses so I just came out an idea: use an Arduino device that can simulate HID devices to turn the keyer into a mouse's left button. In my case I am using a CJMCU Beetle board, which is Arduino Leonardo compatible, only with less GPIOs.
 
