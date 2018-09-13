@@ -11,11 +11,11 @@ Perhaps you have been wondering why [this ArchWiki guide][guide] does not work. 
 
 [guide]: https://wiki.archlinux.org/index.php/UEFI#Windows_changes_boot_order
 
-My case is even worse: I have encrypted my Windows using [VeraCrypt], with the Windows boot loader keep staying in the ESP (unencrypted). So everytime my laptop boot the Windows boot loader, it simply prompts "your system is damaged and need a repair" with a frightening blue background. Hence, I need a way to get rid of this, instead of stupidly pressing F9 (on my Dell laptop this is F12) everytime I power on a computer.
+My case is even worse: I have encrypted my Windows using [VeraCrypt], with the Windows boot loader keeps staying in the ESP (unencrypted). So everytime my laptop boot the Windows boot loader, it simply prompts "your system is damaged and need a repair" with a frightening blue background. Hence, I need a way to get rid of this, instead of stupidly pressing F9 (on my Dell laptop this is F12) everytime I power on a computer.
 
 [VeraCrypt]: https://veracrypt.fr
 
-One interesting fact I discovered during my dull reboot testing is that (I guess, perhaps) Windows checks the existence of `Windows Boot Manager` entry in the UEFI boot table. If there is no, Windows will set one, and modify the boot sequence so that `Windows Boot Manager` always gets loaded the first. If there is one, then Windows will do nothing. So I let Windows to set the entry anyway, and reboot to Linux, run:
+One interesting fact I discovered during my dull reboot testing is that (I guess, perhaps) Windows checks the existence of `Windows Boot Manager` entry in the UEFI boot table. If there is none, Windows will set one, and modify the boot sequence so that `Windows Boot Manager` always gets loaded the first. If there is one, Windows will do nothing. So I let Windows to set the entry anyway, and reboot to Linux, run:
 
 ```bash
 sudo efibootmgr --bootnum 0 --inactive
@@ -28,4 +28,4 @@ I think I should add this to ArchWiki?
 
 ## Notes
 
-[^1]: Actually I've done this several times, and the firmware just kept reverting my changes. I suspect that when I did `efibootmgr -O` (which is a shorthand to `--delete-bootorder`), some weird (those "Internal Hard Disk") entries were cleared, and the firmware thought the UEFI boot sequence was damaged, so it regenerated it. I need more trial to figure out how on earth can I trigger this "repair".
+[^1]: Actually I've done this several times, and the firmware just kept reverting my changes. I suspect that when I did `efibootmgr -O` (which is a shorthand to `--delete-bootorder`), some weird (those "Internal Hard Disk") entries were cleared, and the firmware thought the UEFI boot sequence was damaged, so it regenerated it. I need more trials to figure out how on earth can I trigger this "repair".
