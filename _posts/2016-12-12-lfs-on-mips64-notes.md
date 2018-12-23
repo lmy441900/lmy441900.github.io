@@ -7,8 +7,6 @@ categories: mips lfs
 
 **Update:** 修订于 2018-12-23，第二次 AOSC OS MIPS Port Bootstrap。
 
----
-
 最近在做 AOSC OS 的 MIPS64el 移植相关尝试，目标平台是 MIPS64r2 通用，采用 N64 ABI。因为不想在交叉编译的 Stage 1 上花费时间，加上我手上这台 MIPS 机器性能足够好（一台[龙芯 3A2000C](http://loongson.cn/product/cpu/3/Loongson3A2000.html)，8 GB 内存），就想直接基于龙芯开源社区的 Loongnix Linux 进行 LFS。以下是我踩过一些坑以后的总结。
 
 首先是过程和[官方 LFS](http://www.linuxfromscratch.org/lfs/view/stable-systemd/index.html) 大致上并无差异，我在参考 [CLFS (Pure 64)](http://www.clfs.org/view/CLFS-3.0.0-SYSTEMD/mips64-64/index.html) 和 AOSC OS 基本参数的基础上大致遵守了 LFS 的构建规范，毕竟这也确实是一个 LFS 过程。一开始的几次失败让我感觉到玄学特多，但是思路清晰了之后发现其实不过是一些 MIPS 平台特有的特性在影响构建过程，以及 LFS 本身的坑。
@@ -43,7 +41,7 @@ CC="$LFS_BLD-gcc $BUILD64" CXX="$LFS_BLD-g++ $BUILD64" \
 
 （没错确实应该放到 `$CC` 和 `$CXX` 里，具体请参阅每个变量的含义~~，也是为了方便操作~~）
 
-GCC 亦如此。但实际上这个步骤**不必要**：`binutils` 和 `gcc` 都要经过 Pass 2，Pass 2 会覆盖掉 Pass 1，**而只要在 Pass 1 和 Pass 2 的 `gcc` 上配置好了默认的调校，就可以维持这个配置了**。
+GCC 亦如此。对于 Loongnix 来说，因为它的 GCC 已经是默认这套参数了，所以实际上这个步骤不必要。如果是其它 Host，那么可能还是需要这么做。
 
 ## LFS 的坑
 
@@ -51,8 +49,8 @@ GCC 亦如此。但实际上这个步骤**不必要**：`binutils` 和 `gcc` 都
 
 ```bash
 CC=$LFS_TGT-gcc                \
-AR=$LFS_TGT-ar                 \
-RANLIB=$LFS_TGT-ranlib         \
+AR=$LFS_TGT-ar                 \ # 这一覆盖与下面的 RANLIB
+RANLIB=$LFS_TGT-ranlib         \ # 实际上都没有必要（见下）
 ../configure                   \
     --build=$LFS_TGT           \ # <-
     --prefix=/tools            \
@@ -62,9 +60,9 @@ RANLIB=$LFS_TGT-ranlib         \
     --with-sysroot
 ```
 
-在整个构建过程中，**一定要预先设定 `--build` 和 `--host`（当然还有 `--target`，如果有的话）**。否则 Triplet 就会被 Guess，而如果你的 Triplet 不是 `config.guess` 给出的默认，那就搞错了。（虽然不会造成什么大的问题，但是这个流程明显不对）
+但是为什么还是要 Override `CC` 呢？这是因为在 LFS 工具链中还不存在 `gcc` 这一链接，而 `configure` 找 GCC 的时候，第一个就找到了 `gcc`，恰好这个 GCC 并不是我们工具链中的那个，是宿主系统的那个。LFS 里还覆盖了 `AR` 和 `RANLIB`，我用 `which` 看了一下这两个都指向刚刚构建的工具链里的 Binutils，应该（理论上）是不用覆盖的吧。
 
-不是很清楚 x86 平台上有没有这个问题。
+在整个构建过程中，**最好预先设定 `--build` 和 `--host`（当然还有 `--target`，如果有的话）**。否则 Triplet 就会被 Guess，而如果你的 Triplet 不是 `config.guess` 给出的默认值，那就搞错了。
 
 ## 别的问题
 
