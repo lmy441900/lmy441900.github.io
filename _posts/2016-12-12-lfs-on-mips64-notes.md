@@ -5,6 +5,10 @@ date:   2016-12-12
 categories: mips lfs
 ---
 
+**Update:** 修订于 2018-12-23，第二次 AOSC OS MIPS Port Bootstrap。
+
+---
+
 最近在做 AOSC OS 的 MIPS64el 移植相关尝试，目标平台是 MIPS64r2 通用，采用 N64 ABI。因为不想在交叉编译的 Stage 1 上花费时间，加上我手上这台 MIPS 机器性能足够好（一台[龙芯 3A2000C](http://loongson.cn/product/cpu/3/Loongson3A2000.html)，8 GB 内存），就想直接基于龙芯开源社区的 Loongnix Linux 进行 LFS。以下是我踩过一些坑以后的总结。
 
 首先是过程和[官方 LFS](http://www.linuxfromscratch.org/lfs/view/stable-systemd/index.html) 大致上并无差异，我在参考 [CLFS (Pure 64)](http://www.clfs.org/view/CLFS-3.0.0-SYSTEMD/mips64-64/index.html) 和 AOSC OS 基本参数的基础上大致遵守了 LFS 的构建规范，毕竟这也确实是一个 LFS 过程。一开始的几次失败让我感觉到玄学特多，但是思路清晰了之后发现其实不过是一些 MIPS 平台特有的特性在影响构建过程，以及 LFS 本身的坑。
@@ -43,16 +47,22 @@ GCC 亦如此。但实际上这个步骤**不必要**：`binutils` 和 `gcc` 都
 
 ## LFS 的坑
 
-除了 MIPS 平台带来的一些麻烦，我发现 LFS 本身也存在问题，具体地说就是从 binutils Pass 2 开始 LFS 就出现了在 `configure` 前面使用 `CC=$LFS_TGT-gcc`、`AR=$LFS_TGT-ar` 等变量强行用 Pass 1 的 GCC 编译。**这是错误的**，并且不难发现 `make install` 以后在 `/tools` 下多出一个 `mips64el-unknown-linux-gnu/`。这个 Triplet 是 `config.guess` 的结果——换句话说，这个构建参数是不正确的，应该是使用 GCC Pass 1 来构建 Binutils Pass 2 以及 GCC Pass 2。
+除了 MIPS 平台带来的一些麻烦，我发现 LFS 本身也存在问题，具体地说就是从 binutils Pass 2 开始 LFS 就出现了在 `configure` 前面使用 `CC=$LFS_TGT-gcc`、`AR=$LFS_TGT-ar` 等变量强行用 Pass 1 的 GCC 编译。**这是 ~~错误~~ _不完整_ 的**，并且不难发现 `make install` 以后在 `/tools` 下多出一个 `mips64el-unknown-linux-gnu/`。这个 Triplet 是 `config.guess` 的结果——换句话说，这个构建参数是不正确的，应该还需要让 `configure` 配置使用 GCC Pass 1 来构建 Binutils Pass 2 以及 GCC Pass 2：
 
 ```bash
-../configure --build=mips64el-redhat-linux    \
-             --host=mips64el-aosc-linux-gnu   \
-             --target=mips64el-aosc-linux-gnu \
-#            ...
+CC=$LFS_TGT-gcc                \
+AR=$LFS_TGT-ar                 \
+RANLIB=$LFS_TGT-ranlib         \
+../configure                   \
+    --build=$LFS_TGT           \ # <-
+    --prefix=/tools            \
+    --disable-nls              \
+    --disable-werror           \
+    --with-lib-path=/tools/lib \
+    --with-sysroot
 ```
 
-在整个构建过程中，**一定要预先设定 `--build` 和 `--host`（当然还有 `--target`，如果有的话）**。否则 Triplet 就会被 Guess，而如果你的 Triplet 不是 `*-unknown-*`，那就搞错了。（虽然不会造成什么大的问题，但是这个流程明显不对）
+在整个构建过程中，**一定要预先设定 `--build` 和 `--host`（当然还有 `--target`，如果有的话）**。否则 Triplet 就会被 Guess，而如果你的 Triplet 不是 `config.guess` 给出的默认，那就搞错了。（虽然不会造成什么大的问题，但是这个流程明显不对）
 
 不是很清楚 x86 平台上有没有这个问题。
 
