@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "如何在单台服务器上可靠地部署 ownCloud（未完）"
+title:  "如何在单台服务器上可靠地部署 ownCloud"
 date:   2016-08-06
 categories: ownCloud
 ---
