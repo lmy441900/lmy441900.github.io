@@ -34,7 +34,7 @@ LFS 过程基本遵循标准 LFS 教程，因此我只按 LFS 步骤记下要注
 
 - 注意调整 `$LFS_TGT` 到目标平台 Triplet
 - 可以考虑添加一些常用变量：
-  - `$LFS_BLD` 当前平台 Triplet，因为 `config.guess` 给的 `*-unknwon-*` 还是丑了点
+  - `$LFS_BLD` 当前平台 Triplet，因为 `config.guess` 给的 `*-unknown-*` 还是丑了点
   - `$MAKEFLAGS` 放 `-j$(( $(nproc) + 1 ))`（执行 `nproc` 得到当前 CPU 数，加一）让 `make` 多线程编译，而不需要每次都打 `-jN`
 
 ## 5.4. Binutils-2.31.1 - Pass 1
