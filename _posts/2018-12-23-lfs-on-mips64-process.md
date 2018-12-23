@@ -51,6 +51,8 @@ LFS 过程基本遵循标准 LFS 教程，因此我只按 LFS 步骤记下要注
   - 添加 `--build=$LFS_BLD`
   - 对 "Care" Port，添加 `--with-abi=64 --with-arch=mips3 --with-tune=loongson2f`
   - 对 "Modern" Port，添加 `--with-abi=64 --with-arch=mips64r2 --with-tune=loongson3a`
+    - 另添加 `--without-madd4` 绕过龙芯 3 号对 MIPS 标准的不兼容实现（unfused -> fused），会有性能损失，但是是兼容性的代价
+  - 添加 `--disable-multilib`，目标构建是纯 64 位系统
 
 ## 5.7. Glibc-2.28
 
