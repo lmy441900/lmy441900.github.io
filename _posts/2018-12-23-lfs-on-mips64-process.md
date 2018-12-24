@@ -59,6 +59,10 @@ LFS 过程基本遵循标准 LFS 教程，因此我只按 LFS 步骤记下要注
 - 在 `configure` 处：
   - **这里 LFS 指定了 `--build=$(../scripts/config.guess)`，注意我们的 Triplet 和猜的不同，所以需要替换成 `--build=$LFS_BLD`**
 
+## 5.8. Libstdc++ from GCC-8.2.0
+
+- 添加 `--build=$LFS_BLD`
+
 ## 5.9. Binutils-2.31.1 - Pass 2
 
 - 在 `configure` **后**：
