@@ -78,6 +78,10 @@ LFS 过程基本遵循标准 LFS 教程，因此我只按 LFS 步骤记下要注
     - 并且我们的 Triplet 和猜的不同，所以这一项是必要的
 - 其余步骤参见 Pass 1
 
+## The Rest
+
+- 为了好看，记得 `--build=$LFS_TGT`
+
 ## Notes
 
 [^1]: [Forwarded from imi415] aosc os，关爱您、您的开发板、您的谜之处理器和您的史前遗产
