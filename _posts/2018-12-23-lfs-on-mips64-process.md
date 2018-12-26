@@ -82,6 +82,23 @@ LFS 过程基本遵循标准 LFS 教程，因此我只按 LFS 步骤记下要注
 
 - 为了好看，记得 `--build=$LFS_TGT`
 
+## 6.6. Creating Essential Files and Symlinks
+
+- 在 _6.7. Linux-4.18.5 API Headers_ `make mrproper` 的时候还需要 `/bin/awk -> /bin/gawk -> /tools/bin/gawk` 这个链接，加上
+
+## 6.9. Glibc-2.28
+
+- 对 _Determine the GCC include directory_ 一操作，由于 LFS 中指定了是 x86 架构的操作，这里需要手动 `export`
+- 我们不 LSB，两个 Symlink 可以不用做
+  - 否则还是需要做的，目标库文件名是 `ld.so.1`
+
+## 6.17. GMP-6.1.2
+
+- 由于在 MIPS 上 GMP 支持三种 ABI，在 `configure` **前**手动指定 `ABI=64`（或者 `export ABI=64`）
+- GMP 带的 `configure` 对 Triplet 的识别不是很标准，把我们 `mipsisa64r2el` 的 CPU 判断成了 32 位的。这里要给 `configure:4664` 做个改动：
+  - `mips64*-*-* -> mips*64*-*-*`
+  - 如果 Triplet 不是那么奇葩，这里是不需要动的
+
 ## Notes
 
 [^1]: [Forwarded from imi415] aosc os，关爱您、您的开发板、您的谜之处理器和您的史前遗产
