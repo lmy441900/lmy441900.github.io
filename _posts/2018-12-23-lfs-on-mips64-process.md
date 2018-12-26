@@ -46,7 +46,7 @@ LFS 过程基本遵循标准 LFS 教程，因此我只按 LFS 步骤记下要注
 
 - 在修改 GCC 默认链接器位置的时候（_The following command will change the location of GCC's default dynamic linker to use the one installed in /tools_），注意切换 `i386` 到 `mips`
   - 并且 `mips` 下没有 `linux64.h`，所以可以免去这一替换
-- 暂时没有找到方法修改 MIPS 上默认的 64 位链接库目录到 `lib`（_Finally, on x86\_64 hosts, set the default directory name for 64-bit libraries to "lib"_）
+- LFS 对 `x86_64` 修改了默认的 64 位链接库目录到 `lib`（_Finally, on x86\_64 hosts, set the default directory name for 64-bit libraries to "lib"_）；对 MIPS，我尚不清楚位于 `gcc/config/mips/t-linux64` 的类似修改是否有意义，因为这里面的 `lib{,32,64}` 定义是对 Multiarch 的，在没有 Multiarch 的情况下应该不起效，所以我没有修改这一项。
 - 在 `configure` 处：
   - 添加 `--build=$LFS_BLD`
   - 对 "Care" Port，添加 `--with-abi=64 --with-arch=mips3 --with-tune=loongson2f`
