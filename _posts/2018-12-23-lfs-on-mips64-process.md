@@ -50,8 +50,8 @@ LFS 过程基本遵循标准 LFS 教程，因此我只按 LFS 步骤记下要注
 - 在 `configure` 处：
   - 添加 `--build=$LFS_BLD`
   - 对 "Care" Port，添加 `--with-abi=64 --with-arch=mips3 --with-tune=loongson2f`
-  - 对 "Modern" Port，添加 `--with-abi=64 --with-arch=mips64r2 --with-tune=loongson3a`
-    - 另添加 `--without-madd4` 绕过龙芯 3 号对 MIPS 标准的不兼容实现（unfused -> fused），会有性能损失，但是是兼容性的代价
+  - 对 "Modern" Port，添加 `--with-abi=64 --with-arch=mips64r2 --with-tune=loongson3a`[^2]
+    - 另添加 `--without-madd4` 绕过龙芯三号对 MIPS 标准的不兼容实现（unfused -> fused），会有性能损失，但是是兼容性的代价
   - 添加 `--disable-multilib`，目标构建是纯 64 位系统
 
 ## 5.7. Glibc-2.28
@@ -78,6 +78,10 @@ LFS 过程基本遵循标准 LFS 教程，因此我只按 LFS 步骤记下要注
     - 并且我们的 Triplet 和猜的不同，所以这一项是必要的
 - 其余步骤参见 Pass 1
 
+## 5.29. Perl-5.28.0
+
+- Perl 的非标准 `Configure` 在这个阶段会两次莫名其妙地进入 Bash 的交互命令行，我不太清楚是怎么回事。
+
 ## The Rest
 
 - 为了好看，记得 `--build=$LFS_TGT`
@@ -94,7 +98,7 @@ LFS 过程基本遵循标准 LFS 教程，因此我只按 LFS 步骤记下要注
 
 ## 6.17. GMP-6.1.2
 
-- 由于在 MIPS 上 GMP 支持三种 ABI，在 `configure` **前**手动指定 `ABI=64`（或者 `export ABI=64`）
+- 由于在 MIPS 上 GMP 支持三种 ABI，在 `configure` 前手动指定 `ABI=64`（或者 `export ABI=64`）
 - GMP 带的 `configure` 对 Triplet 的识别不是很标准，把我们 `mipsisa64r2el` 的 CPU 判断成了 32 位的。这里要给 `configure:4664` 做个改动：
   - `mips64*-*-* -> mips*64*-*-*`
   - 如果 Triplet 不是那么奇葩，这里是不需要动的
@@ -102,3 +106,4 @@ LFS 过程基本遵循标准 LFS 教程，因此我只按 LFS 步骤记下要注
 ## Notes
 
 [^1]: [Forwarded from imi415] aosc os，关爱您、您的开发板、您的谜之处理器和您的史前遗产
+[^2]: 对龙芯三号的 `LL` / `SC` Bug，最好是通过 Binutils 补丁的方式让 `gas` 修复问题，而不是在 GCC 这里 `--without-llsc`，这样性能下降会比较厉害，不推荐。
