@@ -105,9 +105,11 @@ LFS 过程基本遵循标准 LFS 教程，因此我只按 LFS 步骤记下要注
 
 ## 6.63. GRUB-2.02
 
-- GRUB 的 `configure` 对 `mips*el-*` 都给出龙芯平台（`platform=loongson`）的猜测，抛出了 `configure: error: qemu, coreboot and loongson ports need build-time grub-mkfont (need freetype2 library)` 的错误，但是这个时候因为 LFS 没有给出编译 freetype2 的步骤，加上已经 `chroot` 了，并没有 `grub-mkfont` 可以用，有两种办法：
-  1. 给 `configure` 传 `--with-platform=none`，让 GRUB 不编译平台特定的代码（功能缺失）。
-  2. 在 Host 上复制一份，我没试过。
+- GRUB 的 `configure` 对 `mips{,64}el-*` 都给出龙芯平台（`platform=loongson`）的猜测，抛出了 `configure: error: qemu, coreboot and loongson ports need build-time grub-mkfont (need freetype2 library)` 的错误，但是这个时候因为 LFS 没有给出编译 freetype2 的步骤，加上已经 `chroot` 了，并没有 `grub-mkfont` 可以用。
+  - 因此 GRUB 的 `configure` 对 `mipsisa64r2el-*` 直接判定未知处理器类型，不编译平台特定代码
+  - 绕过这一问题有两种办法：
+    1. 给 `configure` 传 `--with-platform=none`，让 GRUB 不编译平台特定的代码（同上，功能缺失）
+    2. 在 Host 上复制一份，我没试过
 
 ## Notes
 
