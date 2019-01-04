@@ -103,6 +103,10 @@ LFS 过程基本遵循标准 LFS 教程，因此我只按 LFS 步骤记下要注
   - `mips64*-*-* -> mips*64*-*-*`
   - 如果 Triplet 不是那么奇葩，这里是不需要动的
 
+## 6.49. Libffi-3.2.1
+
+- 在 _Prepare libffi for compilation_ 处，注意给出的 `configure` 参数中有一个 `--with-gcc-arch=native`，这样会给 GCC 加上 `-march=native`，针对编译机器优化，代码在旧处理器上就跑不起来了。注意更换这一参数到目标平台的 `march`。
+
 ## 6.63. GRUB-2.02
 
 - GRUB 的 `configure` 对 `mips{,64}el-*` 都给出龙芯平台（`platform=loongson`）的猜测，抛出了 `configure: error: qemu, coreboot and loongson ports need build-time grub-mkfont (need freetype2 library)` 的错误，但是这个时候因为 LFS 没有给出编译 freetype2 的步骤，加上已经 `chroot` 了，并没有 `grub-mkfont` 可以用。
