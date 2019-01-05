@@ -5,7 +5,11 @@ date:   2016-12-12
 categories: mips lfs
 ---
 
-**Update:** 修订于 2018-12-23，第二次 AOSC OS MIPS Port Bootstrap。
+**Update:** 修订于 2018-12-23 / 2019-1-5，第二次 AOSC OS MIPS Port Bootstrap。
+
+写这篇文章的时候我对 LFS 和 MIPS 都一知半解。对我新一次构建的笔记，参见 [LFS on MIPS64 全过程笔录](https://lmy441900.github.io/mips/lfs/2018/12/23/lfs-on-mips64-process.html)。
+
+---
 
 最近在做 AOSC OS 的 MIPS64el 移植相关尝试，目标平台是 MIPS64r2 通用，采用 N64 ABI。因为不想在交叉编译的 Stage 1 上花费时间，加上我手上这台 MIPS 机器性能足够好（一台[龙芯 3A2000C](http://loongson.cn/product/cpu/3/Loongson3A2000.html)，8 GB 内存），就想直接基于龙芯开源社区的 Loongnix Linux 进行 LFS。以下是我踩过一些坑以后的总结。
 
@@ -19,7 +23,7 @@ MIPS 平台和 x86 平台的一个比较大的差异就在于 [ABI](https://en.w
 - n32（`-mabi=n32`）
 - n64（`-mabi=64`）
 
-另外其实还存在 o64，EABI 和别的奇葩 ABI，实际上我们发现 n32 也是比较冷门的 ABI，至少几个主流的移植到 MIPS 的发行版没有选择这个 ABI。如果单纯按照 LFS 的构建过程编译工具链，出来的东西将是 n32 的（如果你的编译器支持并默认是这样，至少 Loongnix 是）。所以在构建 Temporary System 的时候，要注意在 GCC Pass 1 和 Pass 2 的时候都加上 `configure` 参数：
+另外其实还存在 o64、EABI、NUBI 和别的奇葩 ABI，实际上我们发现 n32 也是比较冷门的 ABI，至少几个主流的移植到 MIPS 的发行版没有选择这个 ABI。如果单纯按照 LFS 的构建过程编译工具链，出来的东西将是 n32 的（如果你的编译器支持并默认是这样，至少 Loongnix 是）。所以在构建 Temporary System 的时候，要注意在 GCC Pass 1 和 Pass 2 的时候都加上 `configure` 参数：
 
 ```bash
 # ...
@@ -49,8 +53,8 @@ GCC 亦如此。对于 Loongnix 来说，因为它的 GCC 已经是默认这套�
 
 ```bash
 CC=$LFS_TGT-gcc                \
-AR=$LFS_TGT-ar                 \ # 这一覆盖与下面的 RANLIB
-RANLIB=$LFS_TGT-ranlib         \ # 实际上都没有必要（见下）
+AR=$LFS_TGT-ar                 \
+RANLIB=$LFS_TGT-ranlib         \
 ../configure                   \
     --build=$LFS_TGT           \ # <-
     --prefix=/tools            \
@@ -66,6 +70,8 @@ RANLIB=$LFS_TGT-ranlib         \ # 实际上都没有必要（见下）
 
 ## 别的问题
 
-1. 因为 AOSC OS 不采用 Multilib 方式构建 32/64 位共存系统（AOSC OS 使用 32Subsystem，“32 位子系统”，因此宿主系统是 Pure 64 的），所以根据 CLFS 在构建 Binutils 的时候应该加上 `--enable-64-bit-bfd` 来开启 64 位支持。（实际上 LFS 也是纯 64 的，莫非是自动开启的？这样就没有加这个开关的必要了。）
-2. **GNU Gold Linker 没法用**，所以不要打开 `--enable-gold`。虽然平台支持，但是 `ld.gold` 相对于 `ld.bfd` 有很多特性及开关缺失，导致诸如 `configure` 这样的构建系统不认（另外也认不出 `ld` 的版本号，就会报错，特别是 `glibc`）。听说在 x86 平台上没有这些问题，不是很懂。
-  - 然而实际情况是我们在 `mips64el` 上仍然打开了 Gold Linker，问题不算太大（打了补丁）……先看着办吧。
+1. 因为 AOSC OS 不采用 Multilib 方式构建 32/64 位共存系统（AOSC OS 使用 32Subsystem，“32 位子系统”，因此宿主系统是 Pure 64 的），所以~~根据 CLFS 在构建 Binutils 的时候应该加上 `--enable-64-bit-bfd` 来开启 64 位支持。（实际上 LFS 也是纯 64 的，莫非是自动开启的？这样就没有加这个开关的必要了。）~~
+    - 6.16. Binutils-2.31.1: _"May not be needed on 64-bit systems, but does no harm."_
+2. **GNU Gold Linker 没法用**，所以~~不要打开 `--enable-gold`。虽然平台支持，但是 `ld.gold` 相对于 `ld.bfd` 有很多特性及开关缺失，导致诸如 `configure` 这样的构建系统不认（另外也认不出 `ld` 的版本号，就会报错，特别是 `glibc`）。听说在 x86 平台上没有这些问题，不是很懂。~~
+    - ~~然而实际情况是我们在 `mips64el` 上仍然打开了 Gold Linker，问题不算太大（打了补丁）……先看着办吧。~~
+    - `--enable-gold` 可以，`--enable-default-gold` 就不清楚了，过了两年了不知道 gold 在 MIPS 上支持怎么样了。

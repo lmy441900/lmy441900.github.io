@@ -7,6 +7,8 @@ categories: mips lfs
 
 > 明年年初，社区合作的 MIPS Port 即将（第二次）正式开机，我将继续扮演架构维护者，我会用维护者技术手段努力创造一个能用的形象，文体两开花，弘扬 MIPS 文化，希望大家多多关注
 
+另可参见我两年前记录的 [LFS on MIPS64 笔记](https://lmy441900.github.io/mips/lfs/2016/12/12/lfs-on-mips64-notes.html)。
+
 ## 编译平台
 
 > Junde Yhi, [22.12.18 22:50]
@@ -25,16 +27,16 @@ categories: mips lfs
   - `mips64el-aosc-linux-gnuabin64`
   - (Legacy) **MIPS-III** ISA
 2. AOSC OS MIPS64EL "Modern" Port
-  - `mipsisa64r2el-aosc-linux-gnuabin64`
+  - `mipsisa64r2el-aosc-linux-gnuabin64`[^2]
   - **MIPS64 revision 2** ISA
 
 LFS 过程基本遵循标准 LFS 教程，因此我只按 LFS 步骤记下要注意或者要添加的事项。
 
 ## 4.4. Setting Up the Environment
 
-- 注意调整 `$LFS_TGT` 到目标平台 Triplet
+- 注意调整 `$LFS_TGT` 到目标平台 Tuple
 - 可以考虑添加一些常用变量：
-  - `$LFS_BLD` 当前平台 Triplet，因为 `config.guess` 给的 `*-unknown-*` 还是丑了点
+  - `$LFS_BLD` 当前平台 Tuple，因为 `config.guess` 给的 `*-unknown-*` 还是丑了点
   - `$MAKEFLAGS` 放 `-j$(( $(nproc) + 1 ))`（执行 `nproc` 得到当前 CPU 数，加一）让 `make` 多线程编译，而不需要每次都打 `-jN`
 
 ## 5.4. Binutils-2.31.1 - Pass 1
@@ -49,14 +51,14 @@ LFS 过程基本遵循标准 LFS 教程，因此我只按 LFS 步骤记下要注
 - LFS 对 `x86_64` 修改了默认的 64 位链接库目录到 `lib`（_Finally, on x86\_64 hosts, set the default directory name for 64-bit libraries to "lib"_）；对 MIPS，我尚不清楚位于 `gcc/config/mips/t-linux64` 的类似修改是否有意义，因为这里面的 `lib{,32,64}` 定义是对 Multiarch 的，在没有 Multiarch 的情况下应该不起效，所以我没有修改这一项。
 - 在 `configure` 处：
   - 添加 `--build=$LFS_BLD`
-  - 对 "Care" Port，添加 `--with-abi=64 --with-arch=mips3 --with-tune=loongson2f`[^2]
-  - 对 "Modern" Port，添加 `--with-abi=64 --with-arch=mips64r2 --with-tune=loongson3a`[^3]
+  - 对 "Care" Port，添加 `--with-abi=64 --with-arch=mips3 --with-tune=loongson2f`[^3]
+  - 对 "Modern" Port，添加 `--with-abi=64 --with-arch=mips64r2 --with-tune=loongson3a`[^4]
     - 另添加 `--without-madd4` 绕过龙芯三号对 MIPS 标准的不兼容实现（unfused -> fused），会有性能损失，但是是兼容性的代价
 
 ## 5.7. Glibc-2.28
 
 - 在 `configure` 处：
-  - 这里 LFS 指定了 `--build=$(../scripts/config.guess)`，注意我们的 Triplet 和猜的不同，所以需要替换成 `--build=$LFS_BLD`
+  - 这里 LFS 指定了 `--build=$(../scripts/config.guess)`，注意我们的 Tuple 和猜的不同，所以需要替换成 `--build=$LFS_BLD`
 
 ## 5.8. Libstdc++ from GCC-8.2.0
 
@@ -67,14 +69,14 @@ LFS 过程基本遵循标准 LFS 教程，因此我只按 LFS 步骤记下要注
 - 在 `configure` 后：
   - 添加 `--build=$LFS_TGT`
     - 注意这里要开始使用 Pass 1 GCC 了，是 `TGT`
-    - 并且我们的 Triplet 和猜的不同，所以这一项是必要的
+    - 并且我们的 Tuple 和猜的不同，所以这一项是必要的
 
 ## 5.10. GCC-8.2.0 - Pass 2
 
 - 在 `configure` 后：
   - 添加 `--build=$LFS_TGT`
     - 同上，这里要开始使用 Pass 1 GCC 了，是 `TGT`
-    - 并且我们的 Triplet 和猜的不同，所以这一项是必要的
+    - 并且我们的 Tuple 和猜的不同，所以这一项是必要的
 - 其余步骤参见 Pass 1
 
 ## 5.29. Perl-5.28.0
@@ -83,8 +85,8 @@ LFS 过程基本遵循标准 LFS 教程，因此我只按 LFS 步骤记下要注
 
 ## The Rest
 
-- 为了好看，记得 `--build=$LFS_TGT`（特别是像 Bash 这种记录 Triplet 的）
-- 注意 LFS 对很多包做了 FHS 兼容性调整，对 AOSC OS 来说大部分都不必要，因为 AOSC OS 是默认做了 `/usr` merge[^4] 的，所以一些诸如 `/usr/bin/xxx -> /bin` 的移动就没有意义。
+- 为了好看，记得 `--build=$LFS_TGT`（特别是像 Bash 这种记录 Tuple 的）
+- 注意 LFS 对很多包做了 FHS 兼容性调整，对 AOSC OS 来说大部分都不必要，因为 AOSC OS 是默认做了 `/usr` merge[^5] 的，所以一些诸如 `/usr/bin/xxx -> /bin` 的移动就没有意义。
   - 这其中还包括在 `configure` 阶段就做出的调整，注意弄清楚各个选项的含义。比如 `systemd` 中的 `--with-xxx-path=yyy` 选项不是要指定安装目录，而是**指定二进制文件所在位置**，`meson` 会将这些信息写入到 Systemd Units 配置中。一开始我就想当然去除了这些选项，启动之后 systemd 就有一堆服务因为找不到二进制文件（找了 `/tools/bin/xxx`，而最终系统中并没有）而发生错误。
 
 ## 6.6. Creating Essential Files and Symlinks
@@ -100,9 +102,9 @@ LFS 过程基本遵循标准 LFS 教程，因此我只按 LFS 步骤记下要注
 ## 6.17. GMP-6.1.2
 
 - 由于在 MIPS 上 GMP 支持三种 ABI，在 `configure` 前手动指定 `ABI=64`（或者 `export ABI=64`）
-- GMP 带的 `configure` 对 Triplet 的识别不是很标准，把我们 `mipsisa64r2el` 的 CPU 判断成了 32 位的。这里要给 `configure:4664` 做个改动：
+- GMP 带的 `configure` 对 Tuple 的识别不是很标准，把我们 `mipsisa64r2el` 的 CPU 判断成了 32 位的。这里要给 `configure:4664` 做个改动：
   - `mips64*-*-* -> mips*64*-*-*`
-  - 如果 Triplet 不是那么奇葩，这里是不需要动的
+  - 如果 Tuple 不是那么奇葩，这里是不需要动的
 
 ## 6.21. GCC-8.2.0
 
@@ -123,6 +125,7 @@ LFS 过程基本遵循标准 LFS 教程，因此我只按 LFS 步骤记下要注
 ## Notes
 
 [^1]: [Forwarded from imi415] aosc os，关爱您、您的开发板、您的谜之处理器和您的史前遗产
-[^2]: 对龙芯二号，有 `-mfix-loongson2f-nop -mfix-loongson2f-jump` 两个 GCC 选项来绕过龙芯 2F 前期批次的 Bug，但是它们没有对应的 `configure` 选项，所以在后期构建系统介入之后注入选项实现修复。
-[^3]: 对龙芯三号的 `LL` / `SC` Bug，最好是通过 Binutils 补丁的方式让 `gas` 修复问题，而不是在 GCC 这里 `--without-llsc`，这样性能下降会比较厉害，不推荐。
-[^4]: https://github.com/AOSC-Dev/aosc-os/wiki/FYI_FS_Hierarchy
+[^2]: 好吧，我知道这其实是个 [Multiarch](https://wiki.debian.org/Multiarch) Tuple，但是为了明确区分这两个移植，我觉得我可能不得不这么做，毕竟 MIPS-III 是 MIPS64 的子集……
+[^3]: 对龙芯二号，有 `-mfix-loongson2f-nop -mfix-loongson2f-jump` 两个 GCC 选项来绕过龙芯 2F 前期批次的 Bug，但是它们没有对应的 `configure` 选项，所以在后期构建系统介入之后注入选项实现修复。
+[^4]: 对龙芯三号的 `LL` / `SC` Bug，最好是通过 Binutils 补丁的方式让 `gas` 修复问题，而不是在 GCC 这里 `--without-llsc`，这样性能下降会比较厉害，不推荐。
+[^5]: https://github.com/AOSC-Dev/aosc-os/wiki/FYI_FS_Hierarchy
