@@ -61,7 +61,7 @@ In which:
 After some search and experiments, I found out that this `user_data` is **what being passed to all callbacks by default**. If we pass `NULL` here, all callbacks without `user_data` declared in Glade will receive `NULL`. So, if we do:
 
 ```c
-/* GtkBuilder used to connect signals are also passed to all callbacks */
+/* GtkBuilder used to connect signals is also passed to all callbacks */
 gtk_builder_connect_signals(builder, builder);
 ```
 
