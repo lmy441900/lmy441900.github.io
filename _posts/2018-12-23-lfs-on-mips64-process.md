@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "LFS on MIPS64 全过程笔录（持续更新）"
+title:  "LFS on MIPS64 全过程笔录"
 date:   2018-12-23
 categories: mips lfs
 ---
@@ -129,3 +129,5 @@ LFS 过程基本遵循标准 LFS 教程，因此我只按 LFS 步骤记下要注
 [^3]: 对龙芯二号，有 `-mfix-loongson2f-nop -mfix-loongson2f-jump` 两个 GCC 选项来绕过龙芯 2F 前期批次的 Bug，但是它们没有对应的 `configure` 选项，所以在后期构建系统介入之后注入选项实现修复。
 [^4]: 对龙芯三号的 `LL` / `SC` Bug，最好是通过 Binutils 补丁的方式让 `gas` 修复问题，而不是在 GCC 这里 `--without-llsc`，这样性能下降会比较厉害，不推荐。
 [^5]: https://github.com/AOSC-Dev/aosc-os/wiki/FYI_FS_Hierarchy
+
+另，我不知道 `mipsisa64r2el` 这个 Host CPU 有没有给我带来麻烦……
