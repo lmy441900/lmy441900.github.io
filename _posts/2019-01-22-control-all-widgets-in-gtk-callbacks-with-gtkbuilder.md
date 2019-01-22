@@ -9,7 +9,7 @@ categories: gtk
 
 `GtkBuilder` allows one to conveniently create graphical user interface (GUI) using an interface designer (i.e. Glade), which is convenient because we can draw GUI by dragging an dropping, without writing a loong piece of code in a GUI initialization function.
 
-In a `GtkBuilder` UI definition file, widget signals can also be assigned in the designer so that one can conveniently connect them with callbacks with a single function call (this is what previously I wrote):
+In a `GtkBuilder` UI definition file, widget signals can also be assigned callbacks in the designer so that one can conveniently connect them with a single function call (this is what previously I wrote):
 
 ```c
 gtk_builder_connect_signals(builder, NULL);
