@@ -5,9 +5,10 @@ date:   2019-01-23
 categories: gtk
 ---
 
-**TL;DR: [`gdk_threads_add_idle()`][gdk-threads-add-idle]**
+**TL;DR: [`gdk_threads_add_idle()`][gdk-threads-add-idle] / [`gdk_threads_add_timeout()`][gdk-threads-add-timeout]**
 
 [gdk-threads-add-idle]: https://developer.gnome.org/gdk3/stable/gdk3-Threads.html#gdk-threads-add-idle
+[gdk-threads-add-timeout]: https://developer.gnome.org/gdk3/stable/gdk3-Threads.html#gdk-threads-add-timeout
 
 GTK+ is not thread safe[^1]. As is described in GDK 3 reference manual:
 
@@ -26,11 +27,11 @@ Consider the following case:
 
 We need:
 
-- A thread to perform the task itself
+- A thread to perform the task itself ("task thread")
 - A thread to update UI elements
 - A communication method for the task thread to tell the UI thread about the result
 
-As GTK+ is not thread safe, we cannot update UI elements on a thread other than the "main thread", or race condition will occur, the program will crash. Thus, we need a way to put our UI update function in the "main thread" to avoid such issue.
+As GTK+ is not thread safe, we cannot update UI elements on a thread other than the "main thread", or race condition will occur, the program will crash. Thus, we need a way to put our UI update function in the "main thread".
 
 To achieve this, use:
 
@@ -43,16 +44,16 @@ gdk_threads_add_idle_full(ui_update_func, user_data);
 - `ui_update_func` is the function name of our UI update code
 - `user_data` is the extra argument to be passed to `ui_update_func`
 
-In this way, `ui_update_func` will be executed "whenever there are no higher priority events pending"[^2] (e.g. no signals are emitting), so we can wait for the task thread to finish, receive the result, and display it on the UI.
+In this way, `ui_update_func` will be executed "whenever there are no higher priority events pending"[^2] (e.g. no signals are emitting), so in the UI update code we can (busy-)wait for the task thread to finish, receive the result, and display it on the UI.
 
 Another similar way to achieve asynchronous UI update is:
 
 ```c
-/* 1000 in millisecond, so this is 1 second */
+/* 1000 in millisecond, so here ui_update_func will be run every 1 second */
 gdk_threads_add_timeout(1000, ui_update_func, user_data);
 ```
 
-This allows us to manipulate widgets (e.g. call `gtk_progress_bar_pulse`) from time to time safely in the UI update function, because it is run in the "main thread" with an interval. I think this is most useful for pulsing progress bars because this seems to be the only widget that requires manual advancing!
+This allows us to manipulate widgets (e.g. call `gtk_progress_bar_pulse`) from time to time safely in the UI update function, because it is run in the "main thread" with a time interval. I think this is most useful for pulsing progress bars because this seems to be the only widget that requires manual advancing!
 
 As you can see, these are utilities provided by GDK, not GTK nor GLib. There are, however, GLib "equivalents":
 
