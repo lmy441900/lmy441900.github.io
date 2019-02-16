@@ -96,17 +96,17 @@ In most cases, you want "untagged" ports. This is why I say in most cases, port-
 
 ## Loop Detection and Broadcast Filtering
 
-In "System" > "management" > "Loop Detection", one can enable loop detection, so that when a loop forms in the network, the switch will blink the LEDs on that two ports. However, this does not prevent broadcast storm. If a cable is connected to two of the ports on the switch, the LEDs will blink, but when a broadcast package is going through the switch (for example, `ping 192.168.0.255`), broadcast storm happens, and the switch will die, until the loop disappears.
+In "System" > "management" > "Loop Detection", one can enable loop detection, so that when a loop forms in the network, the switch will blink the LEDs on that two ports. However, this **does not prevent broadcast storm**. If a cable is connected to two of the ports on the switch, the LEDs will blink; but when a broadcast package is going through the switch (for example, `ping 192.168.0.255`), broadcast storm happens, and the switch will die, until the loop disappears.
 
 Nonetheless, broadcast storm can be prevented with broadcast filtering, which is in "QoS" > "Broadcast Filtering". If the "Storm control rate" is set below `16M`, broadcast storm will not happen even if there is a loop. When the rate is set larger than `32M`, the broadcast storm will still happen.
 
 # Conclusion
 
-I must say it is a little bit surprising for me that a managed switch can be bought in such a low price. Indeed, most people don't need managing in their switches -- switches are plug-and-play in most cases. But for some tech-savvy users, they may still want a managed switch that can configure VLAN or something else, while keeping the size of switch not too big. From my perspective, for those who want advanced switches in their home, domitory, or lab, NETGEAR GS105E is absolotely a good choice.
+I must say it is a little bit surprising for me that a managed switch can be bought in such a low price. Indeed, most people don't need managing in their switches -- switches are plug-and-play in most cases. But for some tech-savvy users, they may still want a managed switch that can configure VLAN or something else, while keeping the size of switch not too big. From my perspective, for those who want advanced switches in their home, domitory, or lab, NETGEAR GS105E is absolutely a good choice.
 
 # Notes
 
-[^1]: On [datasheet for NETGEAR Gigabit Ethernet Smart Managed Plus Switches][datasheet] page 10 "Ordering Information", there is no "China"; only GS108E has.
+[^1]: On [datasheet for NETGEAR Gigabit Ethernet Smart Managed Plus Switches][datasheet] page 10 "Ordering Information", there is no "China"; only GS108E has. Since Australia uses the same plug as China, I think GS105E is most likely sold in Australia first.
 [^2]: Also on [the datasheet][datasheet], page 9 "Technical Specifications", "Electromagnetic Emissions and Immunity Certifications Class" for GS105Ev2 is "B" (stricter than "A"), meaning that GS105E is suitable for home use.
 
 [datasheet]: https://www.netgear.com/images/datasheet/switches/Gigabit_Ethernet_Smart_Managed_Plus_Switches_DS.pdf
