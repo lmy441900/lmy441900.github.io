@@ -33,7 +33,7 @@ The weirdest thing is the AC adapter. It's a 12V 1A 2-pin plug, but in form of 3
 
 _Figure 4. The bundled power adapter_
 
-A "mount kit" also comes with the switch. This is actually a pack of nail for people to hang it onto somewhere.
+A "mount kit" also comes with the switch. This is actually a pack of screw for people to hang it onto somewhere.
 
 ![Back side of the switch](/assets/gs105e-review/gs105e-back.jpg)
 
@@ -59,7 +59,7 @@ There is also a Kensington hole for locking the switch physically.
 
 _Figure 9. The Kensington lock hole_
 
-Disassembling NETGEAR GS105E is easy. Remove the two nails from the back side, and then the top cover can be uninstalled. Remove the two nails on the PCB, and PCB can be moved out of the metal case. This does not void warranty, since you don't have the "void warranty if removed" stickers!
+Disassembling NETGEAR GS105E is easy. Remove the two screws from the back side, and then the top cover can be uninstalled. Remove the two screws on the PCB, and PCB can be moved out of the metal case. This does not void warranty, since you don't have the "void warranty if removed" stickers!
 
 ![Disassembly of GS105E](/assets/gs105e-review/gs105e-disassembly.jpg)
 
