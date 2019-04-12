@@ -6,7 +6,7 @@ permalink: /about/
 
 I am a...
 
-- Computer Science and Technology student in [Beijing Normal University - Hong Kong Baptist University United International College (BNU-HKBU UIC)][uic] in Zhuhai, mainland China.
+- Computer Science and Technology student at [Beijing Normal University - Hong Kong Baptist University United International College (BNU-HKBU UIC)][uic] in Zhuhai, mainland China.
 - (Not-very-active) Developer at [Anthon Open Source Community (AOSC)][aosc], maintaining the AOSC OS MIPS64EL port.
 - HAM (Amateur radio operator), level A (elementary), callsign **BI7PXN**
 
