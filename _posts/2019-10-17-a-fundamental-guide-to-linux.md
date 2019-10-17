@@ -22,10 +22,16 @@ The GPU server provided for our use is installed with _Ubuntu 18.04_, which is a
 
 To log into a remote Linux operating system, we use the **Secured SHell (`ssh`)**. We need to first have an SSH client installed on our local operating system. Here are some options:
 
-- On Microsoft Windows: [PuTTY][putty] is recommended; SSH is also built into Git Bash, [MSYS2][msys2], and [Cygwin][cygwin].
-  - In Microsoft Store, Linux distributions built on [Windows Subsystem of Linux (WSL)][wsl2] have the same usage as normal Linux operating systems.
+- On Microsoft Windows:
+  - [PuTTY][putty] is recommended.
+  - A recent version of Windows 10 (1809 and newer) should already have a `ssh` installed. To use it, follow the following steps:
+    - Press `<CTRL> + X`
+    - In the popped-up context menu, click **"Windows PowerShell"**.
+    - Start using `ssh` as is described below.
+  - SSH is also built into Git Bash, [MSYS2][msys2], and [Cygwin][cygwin].
 - On macOS: SSH is pre-installed.
 - On Linux: SSH is usually pre-installed. If not, ask Google.
+  - In Microsoft Store, Linux distributions built on [Windows Subsystem of Linux (WSL)][wsl2] have the same usage as normal Linux operating systems.
 - On Android: [Termux][termux], [ConnectBot][connectbot].
 - On iOS and iPadOS: [Termius][termius].
 
@@ -37,7 +43,9 @@ To log into a remote Linux operating system, we use the **Secured SHell (`ssh`)*
 [connectbot]: https://play.google.com/store/apps/details?id=org.connectbot
 [termius]:    https://apps.apple.com/us/app/termius-ssh-client/id549039908
 
-In this document, only the standard `ssh` command line program is covered. Information about the GPU server is described in the _"Introduction to GPU server"_ (J. Wu, J. Yu, L. Zheng, et al.) document. Next, connect to the server:
+In this document, only the standard `ssh` command line program is covered. Information about the GPU server is described in the _"Introduction to GPU server"_ (J. Wu, J. Yu, L. Zheng, et al.) document.
+
+Next, connect to the server:
 
 ```shell
 ssh <name>@nndl.uiccst.com
@@ -97,10 +105,12 @@ l  # a more detailed list with hidden files listed (alias of `ls -lah`)
 To go into a directory, type `cd <path>`, where `<path>` is the path to the directory. Examples:
 
 ```shell
-# Enter the "training" directory in the "data" directory under the current location
+# Enter the "training" directory in the "data" directory
+# under the current location
 cd data/training
 
-# Enter the system configuration directory, which is located under the root directory
+# Enter the system configuration directory, which is located
+# under the root directory
 cd /etc
 
 # Go back to the home directory (yes, just type `cd`)
