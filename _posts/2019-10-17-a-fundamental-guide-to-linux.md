@@ -18,6 +18,10 @@ Linux _per se_ is only an operating system **kernel**, not a usable operating sy
 
 The GPU server provided for our use is installed with _Ubuntu 18.04_, which is a stable and modern one.
 
+## Log into a Local Linux Operating System
+
+To log into a local Linux operating system, first we need to install a Linux operating system. Alex Ning will cover this in a future tutorial, so we skip this first.
+
 ## Log into a Remote Linux Operating System
 
 To log into a remote Linux operating system, we use the **Secured SHell (`ssh`)**. We need to first have an SSH client installed on our local operating system. Here are some options:
