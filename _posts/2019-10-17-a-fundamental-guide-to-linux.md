@@ -25,8 +25,8 @@ To log into a remote Linux operating system, we use the **Secured SHell (`ssh`)*
 - On Microsoft Windows:
   - [PuTTY][putty] is recommended.
   - A recent version of Windows 10 (1809 and newer) should already have a `ssh` installed. To use it, follow the following steps:
-    - Press `<CTRL> + X`
-    - In the popped-up context menu, click **"Windows PowerShell"**.
+    - Press `<WINDOWS> + X`
+    - In the popped-up context menu, click **"Windows PowerShell"** (or **Command Prompt**).
     - Start using `ssh` as is described below.
   - SSH is also built into Git Bash, [MSYS2][msys2], and [Cygwin][cygwin].
 - On macOS: SSH is pre-installed.
