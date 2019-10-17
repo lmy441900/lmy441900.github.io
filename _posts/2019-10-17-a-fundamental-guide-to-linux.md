@@ -119,18 +119,22 @@ cd
 
 To create a directory, type `mkdir <name>`, where `<name>` is the name of directory. The directory will be created under the current location; to create directory in other directory, type `mkdir path/to/dir/<name>`.
 
-To copy a file, type:
+To copy a file or a directory, type:
 
 ```
-cp <source> <target>
+cp [-r] <source> <target>
 ```
 
-... where `<source>` is the file we want to copy, and `<target>` is the location we want the file goes. Example:
+... where `<source>` is the file we want to copy, and `<target>` is the location we want the file goes. The **optional** `-r` tells `cp` to copy files _**r**ecursively_; otherwise `cp` refuses to copy a directory.
 
 ```shell
 # Copy train.txt from the current directory to the data directory
 # The trailing slash is not required
 cp train.txt data/
+
+# Copy the whole directory named "data" to .keras/mnist
+# The trailing slash is not required
+cp -r data/ .keras/mnist
 ```
 
 To move a file (instead of copy), use `mv`. Note, that to rename a file or directory, `mv` is also used:
