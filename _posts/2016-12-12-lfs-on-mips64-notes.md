@@ -2,7 +2,7 @@
 layout: post
 title:  "LFS on MIPS64 笔记"
 date:   2016-12-12
-categories: mips lfs
+categories: cn
 ---
 
 **Update:** 修订于 2018-12-23 / 2019-1-5，第二次 AOSC OS MIPS Port Bootstrap。

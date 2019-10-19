@@ -2,7 +2,7 @@
 layout: post
 title:  "Asynchronous GUI Update in GTK"
 date:   2019-01-23
-categories: gtk
+categories: en
 ---
 
 **TL;DR: [`gdk_threads_add_idle()`][gdk-threads-add-idle] / [`gdk_threads_add_timeout()`][gdk-threads-add-timeout]**

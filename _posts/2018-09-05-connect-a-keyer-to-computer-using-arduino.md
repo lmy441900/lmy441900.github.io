@@ -2,7 +2,7 @@
 layout: post
 title:  "Connect A CW Keyer To A Computer Using Arduino Leonardo"
 date:   2018-09-05
-categories: ham
+categories: en
 ---
 
 Recently I take an interest in the amateur radio sports and I have been planning to get a license from [CRAC] for a month. Few days ago I bought a CW keyer (although I will not have the chance to operate on [SW] before I got the B license), but had no idea how to connect it to a computer.

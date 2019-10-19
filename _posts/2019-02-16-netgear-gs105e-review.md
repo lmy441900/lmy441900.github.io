@@ -2,7 +2,7 @@
 layout: post
 title:  "NETGEAR(R) ProSafe(R) GS105E Ethernet Switch Review"
 date:   2019-02-16
-categories: networking switch
+categories: en
 ---
 
 About several months ago I was considering buying a new gigabit ethernet switch that has 5 ports (so it's small enough to fit even on my desk). I already had an unmanaged switch at that time -- a [TP-LINK TL-SG1005D][tp-link-tl-sg1005d], 5-port gigabit ethernet switch, but as I was planning to put some devices in the lab, I need another switch to allow more devices get connected to the same network. I searched for gigabit switches on Taobao, and at some time this NETGEAR GS105E switch appears in my eye.

@@ -2,7 +2,7 @@
 layout: post
 title:  "Control All Widgets in GTK Callbacks with GtkBuilder"
 date:   2019-01-22
-categories: gtk
+categories: en
 ---
 
 **TL;DR: `gtk_builder_connect_signals(builder, builder)`**

@@ -2,7 +2,7 @@
 layout: post
 title:  "Tor 实践"
 date:   2017-06-24
-categories: security tor
+categories: cn
 ---
 
 [Tor][] 在这里\*无论是直连还是接网桥都是已经做不到的了，尽管 Tor 的开发者一再声称 Tor 所使用的网桥协议 [obfs4][] 可以躲避任何侦测手段，然而因为实现上的小缺陷（而不是协议本身，协议是完美的[^1]）现在墙也可以侦测到 obfs4 流量并进行拦截了，所以现在一个通行的办法是用 [Shadowsocks][] 先穿出去，然后让 Tor 走 Shadowsocks 来连接洋葱网络。

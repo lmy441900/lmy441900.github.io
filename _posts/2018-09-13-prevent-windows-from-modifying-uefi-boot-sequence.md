@@ -2,7 +2,7 @@
 layout: post
 title:  "Prevent Windows From Modifying UEFI Boot Sequence"
 date:   2018-09-13
-categories: computer uefi
+categories: en
 ---
 
 **TL;DR: Set `Windows Boot Manager` entry to inactive.**

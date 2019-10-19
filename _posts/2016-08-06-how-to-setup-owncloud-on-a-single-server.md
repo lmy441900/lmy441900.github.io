@@ -2,7 +2,7 @@
 layout: post
 title:  "如何在单台服务器上可靠地部署 ownCloud"
 date:   2016-08-06
-categories: ownCloud
+categories: cn
 ---
 
 ownCloud 是一个知名的私有云解决方案，其功能不仅有基础云计算中的云存储，还能进行生活方面的管理（譬如日历、联系人、待办事项等）。关于 ownCloud 的更详细介绍，可以访问其[官网][owncloud]，在此我就不再赘述。

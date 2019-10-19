@@ -2,7 +2,7 @@
 layout: post
 title:  "LFS on MIPS64 全过程笔录"
 date:   2018-12-23
-categories: mips lfs
+categories: cn
 ---
 
 > 明年年初，社区合作的 MIPS Port 即将（第二次）正式开机，我将继续扮演架构维护者，我会用维护者技术手段努力创造一个能用的形象，文体两开花，弘扬 MIPS 文化，希望大家多多关注

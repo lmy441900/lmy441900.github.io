@@ -2,7 +2,7 @@
 layout: post
 title:  "Can ?: Be An lvalue in C Or Not?"
 date:   2018-03-31
-categories: programming
+categories: en
 ---
 
 **TL;DR: `?:` cannot be an lvalue in C, but it _can_ be an lvalue in C++.**
