@@ -9,24 +9,37 @@ categories: security gpg
 
 **Note:** I am using Linux, and if you're using Windows, you can also find the corresponding configuration file in `%SystemDrive%\Users\%User%\.gnupg`, where `%SystemDrive%` means your system drive, and `%User%` means your user name.
 
+**Update Oct. 19, 2019:** I have updated my `gpg.conf` for some time, so I think it's time to update this blog post too.
+
 ## ~/.gnupg/gpg.conf
 
-```
-# default-key 10294E7C4008E282
+```conf
+# GPG Configuration File
+# Junde Yhi <lmy441900@aosc.xyz>
 
-ask-cert-level
-# armor
-expert
+# I have many private keys
+default-key D274286F672C800A
+
+# Secure memory, or quit
 require-secmem
+
+# Ask trust level during signing
+ask-cert-level
+
+# Show a short key ID for easy referencing
+# (don't worry, for identity checking the full fingerprint is used)
+keyid-format short
+
+# Show the full fingerprint for comparison
 with-fingerprint
-with-subkey-fingerprint
+
 ```
 
 ### default-key
 
 This is used when you have multiple secret keys, and you want to choose a default key.
 
-**This is usually unnecessary.** Since your UID contains your email address, GPG can easily recognize which key should be used (unless you have multiple keys with the same UID).
+**This is usually unnecessary.** Since your UID contains your email address, GPG can easily recognize which key should be used (unless you have multiple keys with the same UID, which is my case).
 
 ### ask-cert-level
 
@@ -64,11 +77,13 @@ This option may not be important for you. However, it does indicate how much you
 
 ### armor (or armour)
 
-This let GPG put ASCII-armored results. ~~By deafult GPG puts binary results (and even to `stdout`!).~~ Use ASCII text makes your encrypted or signed file more explicit about what it is.
+This let GPG put ASCII-armored results. By deafult GPG puts binary results (and even to `stdout`!). Use ASCII text makes your encrypted or signed file more explicit about what it is.
 
-Update: GPG is now smart enough...
+Update: ~~GPG is now smart enough...~~ **GPG still puts binary data to stdout...** The ASCII armoured text is more bloated than the binary format, so if you are encrypting or signing a big file, change it back.
 
 ### expert
+
+**Update: I don't recommend this anymore. This option also disables some check on "insane" operations, so for key generation I recommend adding `--expert` manually.**
 
 This option enables GPG to use new features (though those will be not so recommended, for compability reasons), such as ECC keypair generating.
 
@@ -121,11 +136,9 @@ This make GPG run only in a secure memory environment. GPG will alert you when i
 
 This option turns the long ID displayed in `--list-keys` into the full key fingerprint. It's easier to read.
 
-**DO NOT USE SHORT KEY ID. YOU HAVE BEEN WARNED.** (Collision can happen)
-
 ### with-subkey-fingerprint
 
-Let GPG show subkeys' fingerprints too.
+Let GPG show subkeys' fingerprints too. **I don't use this option anymore, since it makes the key list longer and harder to read.**
 
 ## ~/.gnupg/dirmngr.conf
 
