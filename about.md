@@ -8,7 +8,7 @@ I am a...
 
 - Computer Science and Technology undergraduate student in [Beijing Normal University - Hong Kong Baptist University United International College (BNU-HKBU UIC)][uic], which is located in Zhuhai, mainland China.
 - (Not-very-active) Developer at [Anthon Open Source Community (AOSC)][aosc].
-- HAM (Amateur radio operator), level A (elementary), callsign **BI7PXN**.
+- HAM (amateur radio operator), level A (elementary), callsign **BI7PXN**.
 
 Blog posts are in English or Chinese, depending on my mood.
 
@@ -26,22 +26,27 @@ Blog posts are in English or Chinese, depending on my mood.
 
 ## GPG / PGP
 
-I am planning to switch my PGP key to a newly generated `ed25519 / cv25519` one and apply some best practices I learned after I've created my last PGP key. The following are the two keys of mine:
+I have switched my PGP key to a newly generated `ed25519 / cv25519` one, and I'm applying some best practices I learned after I've created my last PGP key.
 
-- `42F6 3E9D 68B9 884B 414D  4185 1029 4E7C 4008 E282`: the old one.
-- `E6C7 4782 A1FB EE74 1D09  885F D274 286F 672C 800A`: the new one.
+- ~~My old key: `42F6 3E9D 68B9 884B 414D  4185 1029 4E7C 4008 E282`, has been revoked.~~
+- My new key: `E6C7 4782 A1FB EE74 1D09  885F D274 286F 672C 800A`.
 
-I will start using my new PGP key as soon as possible, and I will keep the old key valid until **December 31, 2019**, after which I will issue a revoke certificate to it. If you have signed on my old key, you can trust my new key since I've signed it with my old key.
+Fetch my key from [SKS keyservers][sks].
+
+If you have signed on my old key, you can trust my new key since I've signed it with my old key in prior to the revocation. (Unfortunately this process is still not a best practice!)
+
+[sks]: https://sks-keyservers.net/
 
 ## Contact
 
 You can contact me over:
 
 - [Telegram][tg].
-- Email: lmy441900 at ...
-  - Personal: live dot com
-    - or gmail dot com (I may not check it frequently).
-  - Work (AOSC and development related): aosc dot xyz.
-- Radio (if I happen to be on any channel)!
+- Email: **lmy441900 at** ...
+  - **live dot com**: personal
+  - **gmail dot com**: alternative personal; I may not check it frequently
+  - **aosc dot xyz**: work, AOSC, and development related
+- Radio: [QSO][qso]: 147.950 MHz / 430.050 MHz; FM
 
-[tg]:       https://t.me/lmy441900
+[tg]:  https://t.me/lmy441900
+[qso]: https://en.wikipedia.org/wiki/Contact_(amateur_radio)
