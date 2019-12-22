@@ -5,6 +5,10 @@ date:   2018-12-23
 categories: cn
 ---
 
+**Update 20191222:** 咕咕咕！关于 MIPS 我 2019 年什么都没有做，而且短时间内可能也不会做。以下关于发行版配置的内容已经过时，现在我的想法又不同了，所以就当个 LFS 踩坑记录参考吧。先做些备注以免误导大众。
+
+---
+
 > 明年年初，社区合作的 MIPS Port 即将（第二次）正式开机，我将继续扮演架构维护者，我会用维护者技术手段努力创造一个能用的形象，文体两开花，弘扬 MIPS 文化，希望大家多多关注
 
 另可参见我两年前记录的 [LFS on MIPS64 笔记](https://lmy441900.github.io/mips/lfs/2016/12/12/lfs-on-mips64-notes.html)。
@@ -23,6 +27,8 @@ categories: cn
 
 ## 目标平台
 
+**20191222 注：没有 `gnuabin64` 这种写法，完全就是胡搞。N64 就是 `gnuabi64`。**
+
 1. AOSC OS MIPS64EL "Care"[^1] Port
   - `mips64el-aosc-linux-gnuabin64`
   - (Legacy) **MIPS-III** ISA
@@ -33,6 +39,8 @@ categories: cn
 LFS 过程基本遵循标准 LFS 教程，因此我只按 LFS 步骤记下要注意或者要添加的事项。
 
 ## 4.4. Setting Up the Environment
+
+**20191222 注：`$LFS_BLD` 真的就是为了好看（一些诸如 Bash 之类的软件会记录 Triplet），所以是没有必要的。**
 
 - 注意调整 `$LFS_TGT` 到目标平台 Tuple
 - 可以考虑添加一些常用变量：
@@ -127,7 +135,7 @@ LFS 过程基本遵循标准 LFS 教程，因此我只按 LFS 步骤记下要注
 [^1]: [Forwarded from imi415] aosc os，关爱您、您的开发板、您的谜之处理器和您的史前遗产
 [^2]: 好吧，我知道这其实是个 [Multiarch](https://wiki.debian.org/Multiarch) Tuple，但是为了明确区分这两个移植，我觉得我可能不得不这么做，毕竟 MIPS-III 是 MIPS64 的子集……
 [^3]: 对龙芯二号，有 `-mfix-loongson2f-nop -mfix-loongson2f-jump` 两个 GCC 选项来绕过龙芯 2F 前期批次的 Bug，但是它们没有对应的 `configure` 选项，所以在后期构建系统介入之后注入选项实现修复。
-[^4]: 对龙芯三号的 `LL` / `SC` Bug，最好是通过 Binutils 补丁的方式让 `gas` 修复问题，而不是在 GCC 这里 `--without-llsc`，这样性能下降会比较厉害，不推荐。
+[^4]: 对龙芯三号的 `LL` / `SC` Bug，最好是通过 Binutils 补丁的方式让 `gas` 修复问题，而不是在 GCC 这里 `--without-llsc`，这样性能下降会比较厉害，不推荐。**20191222 注：`gas` 现在已经并入 `--mfix-loongson3-llsc` 选项，可以直接用起。**
 [^5]: https://github.com/AOSC-Dev/aosc-os/wiki/FYI_FS_Hierarchy
 
-另，我不知道 `mipsisa64r2el` 这个 Host CPU 有没有给我带来麻烦……
+另，我不知道 `mipsisa64r2el` 这个 Host CPU 有没有给我带来麻烦……**20191222 注：肯定是会有的，黄脑袋应该没错。**
