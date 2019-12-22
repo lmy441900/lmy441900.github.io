@@ -4,6 +4,10 @@ title:  "A Fundamental Guide to Linux"
 date:   2019-10-17
 ---
 
+**Note:** This article is originally written for my classmates attending COMP4163 Neural Networks and Deep Learning.
+
+---
+
 Hi! In the next few chapters we will learn some **very basic** usage of Linux operating systems. Nowadays Linux operating system(s) are widely used among cloud servers and high performance computing (including the GPU server we may use), but Linux is quite different from Microsoft Windows, which we use every day, so the concepts may seem difficult for us. But don't worry, should you encounter any problem about Linux that is not covered in this document, feel free to ask me!
 
 ## What is Linux
