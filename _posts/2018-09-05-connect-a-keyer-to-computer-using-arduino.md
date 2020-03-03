@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Connect A CW Keyer To A Computer Using Arduino Leonardo"
+title:  "Connecting a CW Keyer to a Computer Using an Arduino Leonardo"
 date:   2018-09-05
 categories: en
 ---

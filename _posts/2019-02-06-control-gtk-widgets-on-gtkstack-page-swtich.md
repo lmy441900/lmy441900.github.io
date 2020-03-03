@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Control GTK Widgets On GtkStack Page Switch"
+title:  "Controlling GTK Widgets on GtkStack Page Switch"
 date:   2019-02-06
 categories: en
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Prevent Windows From Modifying UEFI Boot Sequence"
+title:  "Prevent Windows From Modifying Your UEFI Boot Sequence"
 date:   2018-09-13
 categories: en
 ---

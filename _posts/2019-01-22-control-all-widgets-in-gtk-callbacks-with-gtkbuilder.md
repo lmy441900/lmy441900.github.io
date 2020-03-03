@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Control All Widgets in GTK Callbacks with GtkBuilder"
+title:  "Controlling All Widgets in GTK Callbacks With GtkBuilder"
 date:   2019-01-22
 categories: en
 ---

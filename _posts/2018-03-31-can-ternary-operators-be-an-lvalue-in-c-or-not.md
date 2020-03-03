@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Can ?: Be An lvalue in C Or Not?"
+title:  "Can ?: Be an Lvalue in C or Not?"
 date:   2018-03-31
 categories: en
 ---
