@@ -18,6 +18,3 @@ github_username:  lmy441900
 
 # Build settings
 markdown: kramdown
-
-# Exerpt separator: use this for dividing content and summary
-excerpt_separator: <!-- end of excerpt -->
