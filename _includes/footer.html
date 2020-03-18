@@ -2,17 +2,13 @@
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">{{ site.title }}</h2>
+    <div class="footer-title">
+      <span class="footer-heading">{{ site.title }}.</span>
+      <span class="footer-buildinfo">Last built on {{ site.time | date: "%b %-d, %Y" }} (<a target="_blank" href="{{ site.github.repository_url }}/commit/{{ site.github.build_revision }}">{{ site.github.build_revision | truncate: 7, "" }}</a>).</span>
+    </div>
 
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li>{{ site.title }}</li>
-          <li>{{ site.email }}</li>
-        </ul>
-      </div>
-
-      <div class="footer-col footer-col-2">
         <ul class="social-media-list">
           {% if site.github_username %}
           <li>
@@ -28,7 +24,7 @@
         </ul>
       </div>
 
-      <div class="footer-col footer-col-3">
+      <div class="footer-col footer-col-2">
         <p>{{ site.description }}</p>
       </div>
     </div>
