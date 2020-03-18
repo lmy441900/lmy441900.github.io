@@ -1,3 +1,7 @@
 _site
 .sass-cache
 .jekyll-metadata
+.bundle/
+
+# No need to lock anything, frankly speaking.
+Gemfile.lock
