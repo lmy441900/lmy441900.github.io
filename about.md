@@ -13,14 +13,14 @@ I am a...
 Blog posts are in English or Chinese, depending on my mood.
 
 - [GitHub][github]
-- [LinkedIn (coming soon)][linkedin]
+- [LinkedIn][linkedin]
 - [CV (coming soon)][cv]
 - [FOAF (coming soon)][foaf] [(what?)](https://en.wikipedia.org/wiki/FOAF_(ontology))
 
 [uic]:      https://uic.edu.hk
 [aosc]:     https://aosc.io
 [github]:   https://github.com/lmy441900
-[linkedin]: #
+[linkedin]: https://www.linkedin.com/in/lmy441900/
 [cv]:       #
 [foaf]:     #
 
