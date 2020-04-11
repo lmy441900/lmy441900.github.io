@@ -8,7 +8,7 @@ It's a pitty that nowadays people no longer write high-quality blog posts, but i
 
 - [Haonan Bai](https://library.hoshimi.club), a schoolmate of mine.
 - [Mingcong Bai](https://mingcongbai.wtf), maintainer of [AOSC OS](https://aosc.io), history scholar, great thinker.
-- [Peter Cai](https://typeblog.net), a well-known Android, FOSS developer.
+- [Peter Cai](https://en.typeblog.net), a well-known Android, FOSS developer.
 - [FiveYellowMice](https://fiveyellowmice.com).
 - [Megumi Fox](https://blog.megumifox.com), a cute little fox. [(?)](https://blog.megumifox.com/public/about)
 - [Siubeng Fung](https://feng.moe), also a well-known Android, FOSS developer.
