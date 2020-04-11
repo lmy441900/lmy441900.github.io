@@ -13,7 +13,7 @@ It's a pitty that nowadays people no longer write high-quality blog posts, but i
 - [Megumi Fox](https://blog.megumifox.com), a cute little fox. [(?)](https://blog.megumifox.com/public/about)
 - [Siubeng Fung](https://feng.moe), also a well-known Android, FOSS developer.
 - [Terence Lau](https://terenceliu98.github.io), a statistic and computer science ~~professor~~ expert.
-- [Rainysummer Luo](https://rainysummerluo.github.io), a tech-savvy.
+- [Rainysummer Luo](https://pages.rainysummer.top), a tech-savvy.
 - [Zhenghao Wu](https://ecwuuuuu.com), a deep learning expert.
 - [Junru Zhong](https://junru.dev), a computer science and transportation enthusiast.
 
