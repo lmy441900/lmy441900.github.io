@@ -17,4 +17,12 @@ It's a pitty that nowadays people no longer write high-quality blog posts, but i
 - [Zhenghao Wu](https://ecwuuuuu.com), a deep learning expert.
 - [Junru Zhong](https://junru.dev), a computer science and transportation enthusiast.
 
+In August 2020, I got a chance to become a certified member of the [Chaihuo Maker Space](https://www.chaihuo.org/), where passionate makers gather. I don't think I'm an _authentic_ maker; I'm interested in playing with hardware, but I didn't invest a lot of time in it. Some _true_ makers I came across in the certified members' chat group also set up their websites to show their results and products. Here are some of them:
+
+- [Curious Bin \[zh-Hans\]](http://www.haoqiabin.cn)
+- [Meng Cheng (dreamc) \[zh-Hans\]](https://www.dreamcstudio.cn/)
+- [IT1995 \[zh-Hans\]](http://www.it1995.cn)
+- [Bo Liu](https://blogs.oopswow.com)
+- [Pansy-Zhifei \[zh-Hans\]](https://panzhifei.xyz)
+
 This site is also included in [TUNA Blogroll](https://github.com/tuna/blogroll#lists), blogs in which are also full of great minds and are worth reading!
