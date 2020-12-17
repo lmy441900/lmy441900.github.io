@@ -53,3 +53,7 @@ You can contact me over:
 
 [tg]:  https://t.me/lmy441900
 [qso]: https://en.wikipedia.org/wiki/Contact_(amateur_radio)
+
+> 希望你也可以活成自己想要的样子。
+>
+> ——夜岚Arashi
