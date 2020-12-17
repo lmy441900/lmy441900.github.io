@@ -33,6 +33,12 @@ I have switched my PGP key to a newly generated `ed25519 / cv25519` one, and I'm
 - ~~My old key: `42F6 3E9D 68B9 884B 414D  4185 1029 4E7C 4008 E282`, has been revoked.~~
 - My new key: `E6C7 4782 A1FB EE74 1D09  885F D274 286F 672C 800A`.
 
+Subkey usage explanation:
+
+- `ed25519/ABDA5B82F36D3DB2 2019-10-19 [S]`: main signing key. Located in an air-gapped machine. Not really used.
+- `cv25519/1B318A5615C632D0 2019-10-19 [E]`: main encryption key. Located in an air-gapped machine. Not really used.
+- `rsa2048/943D73C9AD8AFB50 2019-10-19 [S]`: On-card signing key. Located in a smart card (Yubikey 4; it's `rsa2048` because Yubikey 4 doesn't support 25519). Used to sign Git commits and emails on various devices.
+
 Fetch my key from [keys.openpgp.org][koo] or [SKS keyservers][sks] ([not recommended][sks-death]).
 
 If you have signed on my old key, you can trust my new key since I've signed it with my old key in prior to the revocation. (Unfortunately this process is still not a best practice!)
