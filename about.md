@@ -6,7 +6,7 @@ permalink: /about/
 
 I am a...
 
-- Master of Science in Internet of Things (MSc IoT) at [University of Southampton][uos].
+- (Ongoing) Master of Science in Internet of Things (MSc IoT) at [University of Southampton][uos].
 - Bachelor of Science in Computer Science (and Technology) (BSc CS) at [Beijing Normal University - Hong Kong Baptist University United International College (BNU-HKBU UIC)][uic].
 - (Not-very-active) Developer at [Anthon Open Source Community (AOSC)][aosc].
 - HAM (amateur radio operator), level A (elementary), callsign **BI7PXN**.
