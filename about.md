@@ -52,9 +52,11 @@ If you have signed on my old key, you can trust my new key since I've signed it 
 You can contact me over:
 
 - [Telegram][tg].
-- Email: **lmy441900 at** ...
-  - **live dot com**: personal
-  - **aosc dot io**: work, AOSC, and development related
+- Email:
+  - **junde at yhi punkt moe**: personal
+  - **lmy441900 at** ...
+    - **live dot com**: personal alternative
+    - **aosc dot io**: work, AOSC, and development related
 - Radio: [QSO][qso]: 147.950 MHz / 430.050 MHz; FM
 
 [tg]:  https://t.me/lmy441900
