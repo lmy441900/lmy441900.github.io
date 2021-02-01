@@ -16,7 +16,6 @@ Blog posts are in English or Chinese, depending on my mood.
 - [GitHub][github]
 - [LinkedIn][linkedin]
 - [CV (coming soon)][cv]
-- [FOAF (coming soon)][foaf] [(what?)](https://en.wikipedia.org/wiki/FOAF_(ontology))
 
 [uic]:      https://uic.edu.hk
 [uos]:      https://www.southampton.ac.uk/
@@ -24,7 +23,6 @@ Blog posts are in English or Chinese, depending on my mood.
 [github]:   https://github.com/lmy441900
 [linkedin]: https://www.linkedin.com/in/lmy441900/
 [cv]:       #
-[foaf]:     #
 
 ## GPG / PGP
 
