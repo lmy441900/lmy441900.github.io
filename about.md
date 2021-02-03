@@ -42,7 +42,7 @@ Fetch my key from ~~[my CA (not available yet)][ca-pgp],~~ [keys.openpgp.org][ko
 If you have signed on my old key, you can trust my new key since I've signed it with my old key in prior to the revocation. (Unfortunately this process is still not a best practice!)
 
 [ca-pgp]: https://ca.yhi.moe/pgp/main.asc
-[koo]: https://keys.openpgp.org/
+[koo]: https://keys.openpgp.org/vks/v1/by-fingerprint/E6C74782A1FBEE741D09885FD274286F672C800A
 [sks]: https://sks-keyservers.net/
 [sks-death]: https://code.firstlook.media/the-death-of-sks-pgp-keyservers-and-how-first-look-media-is-handling-it
 
