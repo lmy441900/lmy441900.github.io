@@ -78,7 +78,9 @@ nvme format --namespace-id=1 --lbaf=1 /dev/nvme0
 # nvme format -l 1 /dev/nvme0n1
 ```
 
-`nvme` will make you think twice by pausing 10 seconds. Do think twice! The operation finishes in seconds, after which your NVMe disk will be cleared, and should perform better (if you just switched to the "better" LBAF). Today nearly all software and modern operating systems support 4K logical block size, so unless you run _ancient_ software, you don't need to think about the compatibility.
+`nvme` will make you think twice by pausing 10 seconds. Do think twice! The operation finishes in seconds, after which your NVMe disk will be cleared, and should perform better (if you just switched to the "better" LBAF). Today nearly all software and modern operating systems support 4K logical block size, ~~so unless you run _ancient_ software, you don't need to think about the compatibility.~~ **but some system-related software may not still support 4K block sizes. So far, these software I use do not support 4K logical block sizes:**
+
+- VeraCrypt (system encryption only)
 
 ## See Also
 
